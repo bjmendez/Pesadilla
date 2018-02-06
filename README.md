@@ -2,7 +2,7 @@
 https://badges.gitter.im/PesadillaGame.png
 
 
-Project Description
+# Project Description
 
 # MVP
 -User loads into a Start menu, pushes a "start button" and is loaded into the game.
