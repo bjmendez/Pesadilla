@@ -37,3 +37,6 @@ https://gitter.im/PesadillaGame/
 * Local Co-op
 * Online Co-op
 * Multiplayer
+
+# User Story
+Pesadilla is a traditional 2D top-down perspective RPG designed with games such as Legend of Zelda: A Link to the Past and Binding of Isaac in mind.  The player presses start and enters a tower, equipped with a melee weapon, and tries to fend off enemies by killing them before they kill you.  Each tower has a set number of floors, each floor has a mini boss with the top floor containing the final boss for that level.  Beat the final boss, and you win.  Die, and start from the beginning.
