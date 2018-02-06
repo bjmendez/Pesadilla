@@ -1,6 +1,8 @@
 # Pesadilla
 https://badges.gitter.im/PesadillaGame.png
 
+https://gitter.im/PesadillaGame/
+
 
 # Project Description
 
