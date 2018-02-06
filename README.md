@@ -39,4 +39,4 @@ https://gitter.im/PesadillaGame/
 * Multiplayer
 
 # User Story
-Pesadilla is a traditional 2D top-down perspective RPG designed with games such as Legend of Zelda: A Link to the Past and Binding of Isaac in mind.  The player presses start and enters a tower, equipped with a melee weapon, and tries to fend off enemies by killing them before they kill you.  Each tower has a set number of floors, each floor has a mini boss with the top floor containing the final boss for that level.  Beat the final boss, and you win.  Die, and start from the beginning.
+As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss I beat the level, and if I die I start over.
