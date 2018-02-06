@@ -5,8 +5,8 @@ https://badges.gitter.im/PesadillaGame.png
 # Project Description
 
 # MVP
--User loads into a Start menu, pushes a "start button" and is loaded into the game.
--Controls are explained to the user.
+*User loads into a Start menu, pushes a "start button" and is loaded into the game.
+*Controls are explained to the user.
 -User is able to control character using directional keyboard controls.
 -Player can control on screen character and move on screen with sprite animations.
 -Floors contain enemy AI characters that attack the player.
