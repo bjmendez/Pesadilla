@@ -1,2 +1,4 @@
 # Pesadilla
-Games and stuff
+https://badges.gitter.im/PesadillaGame.png
+
+
