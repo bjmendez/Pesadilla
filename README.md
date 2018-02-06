@@ -37,6 +37,7 @@ https://gitter.im/PesadillaGame/
 * Local Co-op
 * Online Co-op
 * Multiplayer
+* Alternate control schemes (Xbox/PS4 controller)
 
 # User Story
 As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss I beat the level, and if I die I start over.
