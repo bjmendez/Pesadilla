@@ -1,7 +1,5 @@
 # Pesadilla
-https://badges.gitter.im/PesadillaGame.png
 
-https://gitter.im/PesadillaGame/
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/[COMMUNITY]/[PesadillaGame]?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
