@@ -39,4 +39,4 @@
 * Alternate control schemes (Xbox/PS4 controller)
 
 # User Story
-As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss I beat the level, and if I die I start over.
+As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I'm hoping for a tower design where each floor is a level and each level is finished by killing a boss and upon killing the boss I can progress to the next level. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss on the top floor I win the game but, if I die along the way I restart at level 1.
