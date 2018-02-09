@@ -7,18 +7,18 @@
 
 # MVP
 * User loads into a Start menu, pushes a "start button" and is loaded into the game.
-* Controls are explained to the user.
+* Controls are briefly explained to the user.
 * User is able to control character using directional keyboard controls.
-* Player can control on screen character and move on screen with sprite animations.
+* User can control on screen character and move on screen with sprite animations.
 * Floors contain enemy AI characters that attack the player.
-* Player can attack enemies and be attacked by enemies, player and enemies have at least one melee attack.
+* Player can attack enemies and be attacked by enemies, player and enemies will have at least one melee attack.
 * Enemies die if they are hit enough times by player.
 * Player has health, health bar is on screen.
 * Player can die if they are hit enough times and run out of health.
 * Levels can be generated procedurally.  Will be generated as a series of rooms connected by corridors.
 * Each level is a tower consisting of a series of floors.
 * Player reaches the end of a floor of a tower, defeats a boss-type enemy, and moves on to the next level.
-* Sound for player attacks, enemy attacks, player being hit, enemy being hit, and background music. 
+* Sound effects for player attacks, enemy attacks, player being hit, enemy being hit, and background music. 
 
 # Add-ons
 * Additional towers/levels.
@@ -40,5 +40,5 @@
 * Alternate control schemes (Xbox/PS4 controller)
 
 # User Story
-As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I'm hoping for a tower design where each floor is a level and each level is finished by killing a boss and upon killing the boss I can progress to the next level. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss on the top floor I win the game but, if I die along the way I restart at the first floor.
+As a player playing Pesadilla I want a 2D Action type RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I'm hoping for a tower design where each floor is a level and each level is finished by killing a boss. Upon killing the boss I can progress to the next level. I want to be able to attack enemies and kill them, and die if they deal enough damage to me. If I kill the final boss on at the top floor of the tower then I win the game but, if I die along the way I will restart at the first floor.
 
