@@ -18,6 +18,7 @@
 * Levels can be generated procedurally.  Will be generated as a series of rooms connected by corridors.
 * Each level is a tower consisting of a series of floors.
 * Player reaches the top floor of a tower, defeats a boss-type enemy, and moves on to the next level.
+* Sound for player attacks, enemy attacks, player being hit, enemy being hit, and background music. 
 
 # Add-ons
 * Additional towers/levels.
@@ -39,4 +40,5 @@
 * Alternate control schemes (Xbox/PS4 controller)
 
 # User Story
-As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I'm hoping for a tower design where each floor is a level and each level is finished by killing a boss and upon killing the boss I can progress to the next level. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss on the top floor I win the game but, if I die along the way I restart at level 1.
+As a player playing Pesadilla I want a 2D type Action RPG similar to Legend of Zelda: A Link to the Past, and Binding of Isaac. I'm hoping for a tower design where each floor is a level and each level is finished by killing a boss and upon killing the boss I can progress to the next level. I want to be able to attack enemies and kill them, and die if they kill me. If I kill the final boss on the top floor I win the game but, if I die along the way I restart at the first floor.
+
