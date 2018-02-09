@@ -17,7 +17,7 @@
 * Player can die if they are hit enough times and run out of health.
 * Levels can be generated procedurally.  Will be generated as a series of rooms connected by corridors.
 * Each level is a tower consisting of a series of floors.
-* Player reaches the top floor of a tower, defeats a boss-type enemy, and moves on to the next level.
+* Player reaches the end of a floor of a tower, defeats a boss-type enemy, and moves on to the next level.
 * Sound for player attacks, enemy attacks, player being hit, enemy being hit, and background music. 
 
 # Add-ons
