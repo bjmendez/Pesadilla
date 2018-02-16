@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
 	private bool isMoving = false;
 	private Rigidbody2D rb2d;
+	private Animator animator;					//Used to store a reference to the Player's animator component.
 
 
 
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
 	protected void Start ()
 	{
 		rb2d = GetComponent<Rigidbody2D> ();
+		//Get a component reference to the Player's animator component
+		animator = GetComponent<Animator>();
 
 	}
 
@@ -49,7 +52,50 @@ public class Player : MonoBehaviour
 	}
 
 	
+	private void Update ()
+	{
+		if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
+			isMoving = false;
+		} else {
+			isMoving = true;
+		}
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			animator.SetTrigger ("playerLeft");
 
+		}
+		else if (Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			animator.SetTrigger ("playerRight");
+		}
+		else if (Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			animator.SetTrigger ("playerBack");
+		}
+		else if (Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			animator.SetTrigger ("playerFoward");
+		}
+
+		if (Input.GetKeyUp(KeyCode.LeftArrow) && !isMoving)
+		{
+			animator.SetTrigger ("playerLIdle");
+		}
+		else if (Input.GetKeyUp(KeyCode.RightArrow) && !isMoving)
+		{
+			animator.SetTrigger ("playerRIdle");
+		}
+		else if (Input.GetKeyUp(KeyCode.UpArrow) && !isMoving)
+		{
+			animator.SetTrigger ("playerBIdle");
+		}
+		else if (Input.GetKeyUp(KeyCode.DownArrow) && !isMoving)
+		{
+			animator.SetTrigger ("playerFIdle");
+		}
+
+
+	}
 
 
 

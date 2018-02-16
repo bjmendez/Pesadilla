@@ -21,6 +21,7 @@ public class BoardCreator : MonoBehaviour
 	public int corridorWidth;
 	public GameObject[] floorTiles;                           // An array of floor tile prefabs.
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
+	public GameObject player;
 
 
 	private int ranNum;
