@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class BoardCreator : MonoBehaviour
@@ -30,7 +31,7 @@ public class BoardCreator : MonoBehaviour
 	public Room[] rooms;                                     // All the rooms that are created for this board.
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
 	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
-
+	private Text UIText;									 //Text object displaying our controls GUI.
 
 	public void BoardSceneSetUp ()
 	{
@@ -47,10 +48,17 @@ public class BoardCreator : MonoBehaviour
 
 		InstantiateTiles ();
 
-
+		DisplayUIText ();
 
 		
 		//InstantiateOuterWalls ();
+	}
+
+	void DisplayUIText()
+	//Displays controls for the user to play the game, object is destroyed after '4' seconds
+	{
+		UIText = GameObject.Find ("ControlsGUI").GetComponent<Text>();
+		Destroy (UIText, 10);
 	}
 
 
