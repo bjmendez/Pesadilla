@@ -1,0 +1,20 @@
+All members present and accounted for.
+
+Current goal of the meeting is to get the prototype finalized and up on Github.
+
+Meeting discussions involve getting the prototype into an acceptable state and posting on our group's Github.  In addition we discussed the goals for our Alpha release and delegated new tasks to be completed.  Alex will be handling the creation of the video for our prototype.
+
+Since our last meeting all of our members have completed the tasks assigned to them previously.
+ -Alex implemented player movement for the character.  Brandon implemented procedural level generation.  Sena implemented the Boss room as well as the exit to the next level.  Joe implemented the GUI for the controls.  And Arturo implemented player animations.
+ 
+ Goals for the next meeting:
+ 
+ Alex: Youtube video done by Friday at 4pm.  Implement design to keep track of floors/levels.
+ 
+ Joe: Work on enemies/boss enemies
+ 
+ Sena: Implement start menu
+ 
+ Brandon: Begin work on implementing player attacks/health
+ 
+ Arturo: Also work on enemies/boss enemies
