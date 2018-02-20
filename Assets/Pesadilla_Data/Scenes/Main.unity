@@ -387,6 +387,11 @@ Prefab:
       propertyPath: m_FontData.m_VerticalOverflow
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114560923148777078, guid: 6055f6505e0d3294f95791cf5fe0aace,
+        type: 2}
+      propertyPath: m_Text
+      value: USE 'WASD' TO MOVE
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6055f6505e0d3294f95791cf5fe0aace, type: 2}
   m_IsPrefabParent: 0
