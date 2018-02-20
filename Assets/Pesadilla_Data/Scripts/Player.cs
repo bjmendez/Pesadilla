@@ -64,37 +64,37 @@ public class Player : MonoBehaviour
 		} else {
 			isMoving = true;
 		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		if (Input.GetKeyDown(KeyCode.A) )
 		{
 			animator.SetTrigger ("playerLeft");
 
 		}
-		else if (Input.GetKeyDown(KeyCode.RightArrow))
+		else if (Input.GetKeyDown(KeyCode.D))
 		{
 			animator.SetTrigger ("playerRight");
 		}
-		else if (Input.GetKeyDown(KeyCode.UpArrow))
+		else if (Input.GetKeyDown(KeyCode.W))
 		{
 			animator.SetTrigger ("playerBack");
 		}
-		else if (Input.GetKeyDown(KeyCode.DownArrow))
+		else if (Input.GetKeyDown(KeyCode.S))
 		{
 			animator.SetTrigger ("playerFoward");
 		}
 
-		if (Input.GetKeyUp(KeyCode.LeftArrow) && !isMoving)
+		if (Input.GetKeyUp(KeyCode.A) && !isMoving)
 		{
 			animator.SetTrigger ("playerLIdle");
 		}
-		else if (Input.GetKeyUp(KeyCode.RightArrow) && !isMoving)
+		else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
 		{
 			animator.SetTrigger ("playerRIdle");
 		}
-		else if (Input.GetKeyUp(KeyCode.UpArrow) && !isMoving)
+		else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
 		{
 			animator.SetTrigger ("playerBIdle");
 		}
-		else if (Input.GetKeyUp(KeyCode.DownArrow) && !isMoving)
+		else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
 		{
 			animator.SetTrigger ("playerFIdle");
 		}
