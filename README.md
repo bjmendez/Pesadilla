@@ -45,3 +45,5 @@ As a player playing Pesadilla I want a 2D Action type RPG similar to Legend of Z
 # How to run the game 
 Go to the release and download the the zip. Once you have downloaded the zip just extract all the files from the zip into a folder. To start the game just run the Pesadila.exe 
 
+# Prototype youtube link
+https://www.youtube.com/watch?v=AgaNH6g_O3I
