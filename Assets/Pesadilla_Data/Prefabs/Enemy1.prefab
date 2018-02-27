@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5095068}
   - component: {fileID: 6195068}
   - component: {fileID: 11495068}
+  - component: {fileID: 114000344714459876}
   m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
@@ -167,3 +168,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 195068}
   m_IsPrefabParent: 1
+--- !u!114 &114000344714459876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd417ab98f919d4e9bc346189db8c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 0
+  enemySpeed: 5

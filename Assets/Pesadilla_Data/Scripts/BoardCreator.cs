@@ -32,6 +32,7 @@ public class BoardCreator : MonoBehaviour
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
 	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
 	private Text UIText;									 //Text object displaying our controls GUI.
+	private bool UITextDisplayed;
 
 	public void BoardSceneSetUp ()
 	{
@@ -48,7 +49,10 @@ public class BoardCreator : MonoBehaviour
 
 		InstantiateTiles ();
 
-		DisplayUIText ();
+		//If statement to fix issue of UIText appearing when new levels are generated
+		if (UITextDisplayed != false) {
+			DisplayUIText ();
+		}
 
 		
 		//InstantiateOuterWalls ();
@@ -57,8 +61,9 @@ public class BoardCreator : MonoBehaviour
 	void DisplayUIText()
 	//Displays controls for the user to play the game, object is destroyed after '4' seconds
 	{
-		UIText = GameObject.Find ("ControlsGUI").GetComponent<Text>();
+		UIText = GameObject.Find ("ControlsGUI").GetComponent<Text> ();
 		Destroy (UIText, 10);
+		UITextDisplayed = false;
 	}
 
 
