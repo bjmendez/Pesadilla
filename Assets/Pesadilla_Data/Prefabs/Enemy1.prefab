@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 9595068}
   - component: {fileID: 5095068}
   - component: {fileID: 6195068}
-  - component: {fileID: 11495068}
   - component: {fileID: 114000344714459876}
+  - component: {fileID: 11495068}
+  - component: {fileID: 114402887163490914}
   m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
@@ -174,10 +175,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cd417ab98f919d4e9bc346189db8c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 0
   enemySpeed: 5
+  enemyDistance: 2
+--- !u!114 &114402887163490914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7527853331cb14d45a6cae8a30f43c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpeed: 6
+  stoppingDistance: 8
+  retreatDistance: 4
+  startTimeBetweenShots: 2
+  projectile: {fileID: 1408079008170570, guid: 69a30e8d0678c0b4aa845626cfa9c3ad, type: 2}
