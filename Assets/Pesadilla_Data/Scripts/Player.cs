@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
 	private Rigidbody2D rb2d;
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 	private BoardCreator boardScript;
-
+	private string Direction;
+	private int health;
 	
 	void Awake (){
 		GameObject g = GameObject.Find ("GameManager");
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 
 
-
+		movement.Normalize ();
 
 		rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
 
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
 		} else {
 			isMoving = true;
 		}
+
+
 		if (Input.GetKeyDown(KeyCode.A) )
 		{
 			animator.SetTrigger ("playerLeft");
@@ -85,21 +88,41 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyUp(KeyCode.A) && !isMoving)
 		{
 			animator.SetTrigger ("playerLIdle");
+			Direction = "LEFT";
 		}
 		else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
 		{
 			animator.SetTrigger ("playerRIdle");
+			Direction = "RIGHT";
 		}
 		else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
 		{
 			animator.SetTrigger ("playerBIdle");
+			Direction = "BACK";
 		}
 		else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
 		{
 			animator.SetTrigger ("playerFIdle");
+			Direction = "FRONT";
 		}
 
+		if (Input.GetMouseButtonDown (0)) {
+			rb2d.velocity = Vector2.zero;
+			if(Direction == "RIGHT"){
+				animator.SetTrigger ("rightAttack");
+			}
+			if (Direction == "LEFT") {
+				animator.SetTrigger ("leftAttack");
+			}
+			if (Direction == "BACK") {
+				animator.SetTrigger ("backAttack");
+			}
+			if (Direction == "FRONT") {
+				animator.SetTrigger ("frontAttack");
+			}
 
+
+		}
 	}
 	
 	private void OnTriggerEnter2D (Collider2D other){
