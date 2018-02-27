@@ -30,10 +30,10 @@ public class BoardCreator : MonoBehaviour
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	public Room[] rooms;                                     // All the rooms that are created for this board.
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
-	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
-	private Text UIText;									 //Text object displaying our controls GUI.
+	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.									 
+    private Image UIImage;                                   //Image object displaying our controls GUI.
 
-	public void BoardSceneSetUp ()
+    public void BoardSceneSetUp ()
 	{
 		// Create the board holder.
 		boardHolder = new GameObject("BoardHolder");
@@ -57,8 +57,9 @@ public class BoardCreator : MonoBehaviour
 	void DisplayUIText()
 	//Displays controls for the user to play the game, object is destroyed after '4' seconds
 	{
-		UIText = GameObject.Find ("ControlsGUI").GetComponent<Text>();
-		Destroy (UIText, 10);
+        UIImage = GameObject.Find("Controls").GetComponent<Image>();
+
+        Destroy(UIImage, 7);
 	}
 
 

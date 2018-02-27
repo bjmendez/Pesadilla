@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
 	
 	void Awake (){
-		GameObject g = GameObject.Find ("GameManager");
+        GameObject g = GameObject.Find ("GameManager");
 		boardScript = g.GetComponent<BoardCreator> ();
 	}
 	
