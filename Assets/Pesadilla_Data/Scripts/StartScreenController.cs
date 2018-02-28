@@ -23,7 +23,7 @@ public class StartScreenController : MonoBehaviour {
     {
         yield return new  WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("StartMenu");
 
     }
 
