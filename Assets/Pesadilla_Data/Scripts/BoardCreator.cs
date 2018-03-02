@@ -48,19 +48,11 @@ public class BoardCreator : MonoBehaviour
 
 		InstantiateTiles ();
 
-		DisplayUIText ();
 
 		
 		//InstantiateOuterWalls ();
 	}
 
-	void DisplayUIText()
-	//Displays controls for the user to play the game, object is destroyed after '4' seconds
-	{
-        UIImage = GameObject.Find("Controls").GetComponent<Image>();
-
-        Destroy(UIImage, 7);
-	}
 
 
 	void SetupTilesArray ()

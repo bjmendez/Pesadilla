@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadScene : MonoBehaviour {
+public class MainMenu : MonoBehaviour {
 
-    public void OnMouseDown()
+    public void LoadGame()
     {
         SceneManager.LoadScene("Main");
     }
+
+    public void EndGame()
+    {
+        Application.Quit();
+    }
+
+
 }
