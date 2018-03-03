@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class FlashingText : MonoBehaviour {
 
-    private Text startText;
+    public Text startText;
 
 	void Start () {
-        startText = GetComponent<Text>(); //Getting title text
         StartCoroutine(startFlashing());
 	}
 	
