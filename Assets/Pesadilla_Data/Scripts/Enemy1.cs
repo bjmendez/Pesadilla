@@ -8,6 +8,7 @@ public class Enemy1 : MonoBehaviour {
 	public int attackDamage;
 	public float enemySpeed;
 	public float enemyDistance;
+	public float aggroDistance;
 
 	private Animator animator;
 	private Rigidbody2D rb2d;
@@ -22,9 +23,10 @@ public class Enemy1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Vector2.Distance (transform.position, target.position) > enemyDistance) {
-			transform.position = Vector2.MoveTowards (transform.position, target.position, enemySpeed * Time.deltaTime);
+		if (Vector2.Distance (transform.position, target.position) < aggroDistance) {
+			if (Vector2.Distance (transform.position, target.position) > enemyDistance) {
+				transform.position = Vector2.MoveTowards (transform.position, target.position, enemySpeed * Time.deltaTime);
+			}
 		}
 	}
-		
 }
