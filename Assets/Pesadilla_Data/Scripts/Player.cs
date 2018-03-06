@@ -6,25 +6,25 @@ using System.Collections;
 using System.IO;
 
 
-	
+
 public class Player : MonoBehaviour
 {
-	
+
 	public float speed = 1.5f;
 	public Transform transform;
-	
+
 
 	private bool isMoving = false;
 	private Rigidbody2D rb2d;
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 	private BoardCreator boardScript;
 
-	
+
 	void Awake (){
 		GameObject g = GameObject.Find ("GameManager");
 		boardScript = g.GetComponent<BoardCreator> ();
 	}
-	
+
 	//Start overrides the Start function of MovingObject
 	protected void Start ()
 	{
@@ -32,13 +32,13 @@ public class Player : MonoBehaviour
 
 		//Get a component reference to the Player's animator component
 		animator = GetComponent<Animator>();
-	
+
 	}
-	
-	
+
+
 	//This function is called when the behaviour becomes disabled or inactive.
 
-		
+
 	private void FixedUpdate(){
 
 		float moveHorizontal = Input.GetAxisRaw ("Horizontal");
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 		rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
 
 
-	
+
 
 	}
 
@@ -101,13 +101,14 @@ public class Player : MonoBehaviour
 
 
 	}
-	
+
 	private void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Exit") {
 			//print (scenePaths);
 
 			if (boardScript.GetRoomLength () == 1) {
 				SceneManager.LoadSceneAsync ("Main");
+				boardScript.DisplayLevelText();
 				return;
 			}
 			SceneManager.LoadSceneAsync("Boss");
@@ -115,13 +116,11 @@ public class Player : MonoBehaviour
 
 		}
 	}
-	
 
 
 
-	
+
+
 
 
 }
-
-

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Room 
+public class Room
 {
 	public int xPos;                      // The x coordinate of the lower left tile of the room.
 	public int yPos;                      // The y coordinate of the lower left tile of the room.
@@ -8,13 +8,13 @@ public class Room
 	public int roomHeight;                    // How many tiles high the room is.
 	public Direction enteringCorridor;    // The direction of the corridor that is entering this room.
 
-
 	// This is used for the first room.  It does not have a Corridor parameter since there are no corridors yet.
 	public void SetupRoom (IntRange widthRange, IntRange heightRange, int columns, int rows)
 	{
 		// Set a random width and height.
 		roomWidth = widthRange.Random;
 		roomHeight = heightRange.Random;
+
 
 		// Set the x and y coordinates so the room is roughly in the middle of the board.
 		xPos = Mathf.RoundToInt(columns / 2f - roomWidth / 2f);
@@ -31,6 +31,7 @@ public class Room
 		// Set random values for width and height.
 		roomWidth = widthRange.Random;
 		roomHeight = heightRange.Random;
+
 
 		switch (corridor.direction)
 		{
