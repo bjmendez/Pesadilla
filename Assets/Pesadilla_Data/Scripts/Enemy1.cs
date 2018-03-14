@@ -19,7 +19,7 @@ public class Enemy1 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
-		animator.SetTrigger ("Enemy1FrontIdle");
+		//animator.SetTrigger ("Enemy1FrontIdle");
 		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
 	}
 	
@@ -31,12 +31,24 @@ public class Enemy1 : MonoBehaviour {
 				transform.position = Vector2.MoveTowards (transform.position, target.position, enemySpeed * Time.deltaTime);	//Move enemy towards player
 				if (enemyAnimator == 1) {
 					animator.SetTrigger ("Enemy1WalkLeft");
+					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+						animator.SetTrigger ("Enemy1AttackLeft");
+					}
 				} else if (enemyAnimator == 2) {
 					animator.SetTrigger ("Enemy1WalkDown");
+					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+						animator.SetTrigger ("Enemy1AttackDown");
+					}
 				} else if (enemyAnimator == 3) {
 					animator.SetTrigger ("Enemy1WalkRight");
+					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+						animator.SetTrigger ("Enemy1AttackRight");
+					}
 				} else if (enemyAnimator == 4) {
 					animator.SetTrigger ("Enemy1WalkUp");
+					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+						animator.SetTrigger ("Enemy1AttackUp");
+					}
 				}
 			}
 		}
@@ -45,15 +57,32 @@ public class Enemy1 : MonoBehaviour {
 	//Current direction enemy is moving in so we can set an animator trigger
 	int enemyDirection(){
 		Vector3 direction = (target.transform.position - transform.position).normalized;
-		if (direction.x < 0) {	//If enemy is moving left
-			return 1;
-		} else if (direction.x > 0) {	//If enemy is moving right
-			return 3;
-		} else if (direction.y < 0) {	//If enemy is moving down (I think down is negative)
-			return 2;
-		} else if (direction.y > 0) {	//If enemy is moving up (I think up is positive)
-			return 4;
+		if (direction.x < 0 && direction.y < 0) {	//If enemy is moving down and left
+			if (direction.x < direction.y) {		//If enemy is moving more left than down, return 1 for "left".
+				return 1;
+			} else {
+				return 2;							//Else enemy is moving more down than left, return 2 for "down"
+			}
+		} else if (direction.x > 0 && direction.y < 0) {	//If enemy is moving right and down
+			if (direction.x < Mathf.Abs (direction.y)) {	//If enemy is moving more down than right
+				return 2;							//Return 2 for "down"
+			} else {
+				return 3;							//Return 3 for "right"
+			}
+		} else if (direction.x < 0 && direction.y > 0) {	//If enemy is moving left and up
+			if (Mathf.Abs (direction.x) < direction.y) {	//If enemy is moving more up than left
+				return 4;							//Return 4 for up
+			} else {
+				return 1;							//Return 1 for left
+			}
+		} else if (direction.x > 0 && direction.y > 0) {	//If enemy is moving up and right
+			if (direction.x < direction.y) {				//If enemy is moving more up than right
+				return 4;							//Return 4 for up
+			} else {
+				return 3;							//Return 3 for right
+			}
 		}
 		return 0;
 	}
+
 }
