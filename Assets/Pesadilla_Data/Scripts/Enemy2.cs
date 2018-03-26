@@ -12,23 +12,33 @@ public class Enemy2 : MonoBehaviour {
 	public float retreatDistance;
 	//Distance from player enemy will aggro
 	public float aggroDistance;
+	public int enemyHealth;
 
 	private float timeBetweenShots;
 	public float startTimeBetweenShots;
 
 	public GameObject projectile;
 	private Transform player;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
-
+		animator = GetComponent<Animator> ();
 		timeBetweenShots = startTimeBetweenShots;
+		//animator.SetTrigger ("Enemy2Left");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		int enemyAnimator = enemyDirection ();
 		if (Vector2.Distance (transform.position, player.position) < aggroDistance) {
+			//Sets direction/animation of enemy
+			if (enemyAnimator == 1) {
+				animator.SetTrigger ("Enemy2Left");
+			} else {
+				animator.SetTrigger ("Enemy2Right");
+			}
 			//Moves enemy towards player
 			if (Vector2.Distance (transform.position, player.position) > stoppingDistance) {
 				transform.position = Vector2.MoveTowards (transform.position, player.position, enemySpeed * Time.deltaTime);
@@ -50,6 +60,15 @@ public class Enemy2 : MonoBehaviour {
 			} else {
 				timeBetweenShots -= Time.deltaTime;
 			}
+		}
+	}
+
+	int enemyDirection(){
+		Vector3 direction = (player.transform.position - transform.position).normalized;
+		if (direction.x < 0) {
+			return 1;
+		} else {
+			return 2;
 		}
 	}
 }

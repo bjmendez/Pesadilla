@@ -10,6 +10,7 @@ public class Enemy1 : MonoBehaviour {
 	public float enemyDistance;
 	public float aggroDistance;
 	public float attackDistance;
+	public int enemyHealth;
 
 	private Animator animator;
 	private Rigidbody2D rb2d;
@@ -31,29 +32,29 @@ public class Enemy1 : MonoBehaviour {
 				transform.position = Vector2.MoveTowards (transform.position, target.position, enemySpeed * Time.deltaTime);	//Move enemy towards player
 				if (enemyAnimator == 1) {
 					animator.SetTrigger ("Enemy1WalkLeft");
-					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+					/*if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
 						animator.SetTrigger ("Enemy1AttackLeft");
-					}
+					}*/
 				} else if (enemyAnimator == 2) {
 					animator.SetTrigger ("Enemy1WalkDown");
-					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+					/*if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
 						animator.SetTrigger ("Enemy1AttackDown");
-					}
+					}*/
 				} else if (enemyAnimator == 3) {
 					animator.SetTrigger ("Enemy1WalkRight");
-					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+					/*if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
 						animator.SetTrigger ("Enemy1AttackRight");
-					}
+					}*/
 				} else if (enemyAnimator == 4) {
 					animator.SetTrigger ("Enemy1WalkUp");
-					if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
+					/*if (Vector2.Distance (transform.position, target.position) <= enemyDistance + 0.5) {
 						animator.SetTrigger ("Enemy1AttackUp");
-					}
+					}*/
 				}
 			}
 		}
 	}
-
+		
 	//Current direction enemy is moving in so we can set an animator trigger
 	int enemyDirection(){
 		Vector3 direction = (target.transform.position - transform.position).normalized;
