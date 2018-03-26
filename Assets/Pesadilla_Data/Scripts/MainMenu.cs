@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
+    //called if the start button is pressed, loads the game
     public void LoadGame()
     {
         SceneManager.LoadScene("Main");
@@ -14,6 +15,5 @@ public class MainMenu : MonoBehaviour {
     {
         Application.Quit();
     }
-
 
 }

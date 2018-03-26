@@ -6,12 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartScreenController : MonoBehaviour {
 
     public float transitionTime = 0.5f;
-    // Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown("space"))
         {

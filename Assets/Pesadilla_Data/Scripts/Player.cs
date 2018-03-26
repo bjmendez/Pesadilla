@@ -59,62 +59,76 @@ public class Player : MonoBehaviour
 
 	private void Update ()
 	{
-		if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
-			isMoving = false;
-		} else {
-			isMoving = true;
-		}
-		if (Input.GetKeyDown(KeyCode.A) )
-		{
-			animator.SetTrigger ("playerLeft");
+        if (!PauseMenu.isPaused) 
+        {
 
-		}
-		else if (Input.GetKeyDown(KeyCode.D))
-		{
-			animator.SetTrigger ("playerRight");
-		}
-		else if (Input.GetKeyDown(KeyCode.W))
-		{
-			animator.SetTrigger ("playerBack");
-		}
-		else if (Input.GetKeyDown(KeyCode.S))
-		{
-			animator.SetTrigger ("playerFoward");
-		}
+            if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+            {
+                isMoving = false;
+            }
+            else
+            {
+                isMoving = true;
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                animator.SetTrigger("playerLeft");
 
-		if (Input.GetKeyUp(KeyCode.A) && !isMoving)
-		{
-			animator.SetTrigger ("playerLIdle");
-		}
-		else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
-		{
-			animator.SetTrigger ("playerRIdle");
-		}
-		else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
-		{
-			animator.SetTrigger ("playerBIdle");
-		}
-		else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
-		{
-			animator.SetTrigger ("playerFIdle");
-		}
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                animator.SetTrigger("playerRight");
+            }
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
+                animator.SetTrigger("playerBack");
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                animator.SetTrigger("playerFoward");
+            }
 
+            if (Input.GetKeyUp(KeyCode.A) && !isMoving)
+            {
+                animator.SetTrigger("playerLIdle");
+            }
+            else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
+            {
+                animator.SetTrigger("playerRIdle");
+            }
+            else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
+            {
+                animator.SetTrigger("playerBIdle");
+            }
+            else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
+            {
+                animator.SetTrigger("playerFIdle");
+            }
+        }
 
 	}
 	
+    //Loads levels of the dungeon
 	private void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Exit") {
-			//print (scenePaths);
+            //print (scenePaths);
 
-			if (boardScript.GetRoomLength () == 1) {
-				SceneManager.LoadSceneAsync ("Main");
-				return;
-			}
-			SceneManager.LoadSceneAsync("Boss");
+            if (boardScript.GetRoomLength() == 1)
+            {
+                Destroy(GameObject.Find("PauseGUI"));
+
+                SceneManager.LoadSceneAsync("Main");
+                return;
+            }
+            else
+            {
+                DontDestroyOnLoad(GameObject.Find("PauseGUI"));
+                SceneManager.LoadSceneAsync("Boss");
+            }
 
 
-		}
-	}
+        }
+    }
 	
 
 

@@ -14,6 +14,7 @@ public class SelectedText : MonoBehaviour, IPointerEnterHandler {
     }
 
 
+    //Changes the transparency (alpha) of text whenever a cursor hovers over it
     IEnumerator selectedText()
     {
 
