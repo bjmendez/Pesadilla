@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 	private bool isAttacking = false;
 	
 	void Awake (){
-		GameObject g = GameObject.Find ("GameManager");
+        GameObject g = GameObject.Find ("GameManager");
 		boardScript = g.GetComponent<BoardCreator> ();
 	}
 	
@@ -71,8 +71,97 @@ public class Player : MonoBehaviour
 
 	private void Update ()
 	{
+
 		
 		if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
+			isMoving = false;
+		} else {
+			isMoving = true;
+		}
+	
+	
+
+
+		if (Input.GetKeyDown(KeyCode.A) && isMoving)
+		{
+			animator.SetTrigger ("playerLeft");
+			Direction = "LEFT";
+
+
+		}
+		else if (Input.GetKeyDown(KeyCode.D) && isMoving)
+		{
+			animator.SetTrigger ("playerRight");
+			Direction = "RIGHT";
+
+
+		}
+		else if (Input.GetKeyDown(KeyCode.W) && isMoving )
+		{
+			animator.SetTrigger ("playerBack");
+			Direction = "BACK";
+
+		}
+		else if (Input.GetKeyDown(KeyCode.S) && isMoving)
+		{
+			animator.SetTrigger ("playerFoward");
+			Direction = "FRONT";
+
+		}
+
+		if (Input.GetKeyUp(KeyCode.A) && !isMoving)
+		{
+			
+			animator.SetTrigger ("playerLIdle");
+			Direction = "LEFT";
+
+
+		}
+		else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
+		{
+			animator.SetTrigger ("playerRIdle");
+			Direction = "RIGHT";
+
+		}
+		else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
+		{
+			animator.SetTrigger ("playerBIdle");
+			Direction = "BACK";
+
+
+		}
+		else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
+		{
+			animator.SetTrigger ("playerFIdle");
+			Direction = "FRONT";
+		
+
+		}
+
+		if (Input.GetMouseButtonDown (0)) {
+			
+
+
+			if(Direction == "RIGHT"){
+				animator.SetTrigger ("rightAttack");
+			}
+			if (Direction == "LEFT") {
+				animator.SetTrigger ("leftAttack");
+			}
+			if (Direction == "BACK") {
+				animator.SetTrigger ("backAttack");
+			}
+			if (Direction == "FRONT") {
+				animator.SetTrigger ("frontAttack");
+			}
+		
+		}
+
+
+        if (!PauseMenu.isPaused) 
+        {
+
+            if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
 			isMoving = false;
 		} else {
 			isMoving = true;
@@ -161,19 +250,27 @@ public class Player : MonoBehaviour
 
 
 	
+    //Loads levels of the dungeon
 	private void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Exit") {
-			//print (scenePaths);
+            //print (scenePaths);
 
-			if (boardScript.GetRoomLength () == 1) {
-				SceneManager.LoadSceneAsync ("Main");
-				return;
-			}
-			SceneManager.LoadSceneAsync("Boss");
+            if (boardScript.GetRoomLength() == 1)
+            {
+                Destroy(GameObject.Find("PauseGUI"));
+
+                SceneManager.LoadSceneAsync("Main");
+                return;
+            }
+            else
+            {
+                DontDestroyOnLoad(GameObject.Find("PauseGUI"));
+                SceneManager.LoadSceneAsync("Boss");
+            }
 
 
-		}
-	}
+        }
+    }
 	
 
 
