@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
 	private void Update ()
 	{
-        if (!PauseMenu.isPaused)
+        if (!PauseMenu.isPaused) 
         {
 
             if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
 
 	}
 	
+    //Loads levels of the dungeon
 	private void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Exit") {
             //print (scenePaths);
