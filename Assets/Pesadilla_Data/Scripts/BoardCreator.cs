@@ -24,6 +24,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
 	public GameObject player;
 	public GameObject enemy; 
+	public GameObject enemy2;
 	public GameObject exit;
 
 	private int ranNum; 
@@ -47,13 +48,9 @@ public class BoardCreator : MonoBehaviour
 		SetTilesValuesForCorridors ();
 
 		InstantiateTiles ();
-
-
 		
 		//InstantiateOuterWalls ();
 	}
-
-
 
 	void SetupTilesArray ()
 	{
@@ -87,7 +84,9 @@ public class BoardCreator : MonoBehaviour
 			Vector3 playerPos = new Vector3 (rooms[0].xPos+5, rooms[0].yPos + 3, 0);
 			Instantiate(player, playerPos, Quaternion.identity);
 			Vector3 enemyPos = new Vector3  (rooms[0].xPos+5, rooms[0].yPos + 7, 0);
+			Vector3 enemyPos2 = new Vector3 (rooms [0].xPos + 6, rooms [0].yPos + 5, 0);
 			Instantiate(enemy, enemyPos, Quaternion.identity);
+			Instantiate (enemy2, enemyPos2, Quaternion.identity);
 			Vector3 exitPos = new Vector3 (rooms[0].xPos + 7, rooms[0].yPos + 15, 0);
 			Instantiate(exit, exitPos, Quaternion.identity);
 			return;
@@ -165,7 +164,9 @@ public class BoardCreator : MonoBehaviour
 					ranNum = Random.Range(0,250); 
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
+						Vector3 enemyPos2 = new Vector3 (xCoord, yCoord, 0);
 						Instantiate(enemy, enemyPos, Quaternion.identity);
+						Instantiate (enemy2, enemyPos2, Quaternion.identity);
 					}
 
 					tiles[xCoord][yCoord] = TileType.Floor;
