@@ -10,6 +10,7 @@ using System.IO;
 public class Player : MonoBehaviour
 {
 
+
 	public float speed = 1.5f;					// Speed of player
 	public Transform transform;					// player object
 	string m_ClipName;							// name of current animation
@@ -19,14 +20,20 @@ public class Player : MonoBehaviour
 	public static bool isBoss = false;			// are we currently in a boss room
 
 
+	public static int health = 20;
+	public Text healthText;
+	public Slider healthBar;
+
+
 	private bool isMoving = false;				// is player currently moving 
 	private Rigidbody2D rb2d;					//rigidbody attached to player object
 	private Animator animator;					//Used to store a reference to the Player's animator component.
-	private BoardCreator boardScript;			// reference to board creator
-	private string Direction;					// current direction player is facing
-	private int health = 7;						// health of player
-	private bool isAttacking = false;			// is the player currently attacking
-				
+
+	private BoardCreator boardScript;
+	private string Direction;
+	private bool isAttacking = false;
+	private int level_count;
+
 
 	void Awake (){
 
@@ -43,7 +50,13 @@ public class Player : MonoBehaviour
 			
 
 
+
 		animator = GetComponent<Animator>(); //Get a component reference to the Player's animator component
+
+		levelText = GameObject.Find("LevelText").GetComponent<Text>();
+		healthText = GameObject.Find("HealthText").GetComponent<Text>();
+		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
+
 
 		levelText = GameObject.Find("LevelText").GetComponent<Text>(); // Get the current text that is on the screen
 
@@ -59,6 +72,7 @@ public class Player : MonoBehaviour
 
 	void TakeDamage(int damage){ //Method to decrement health
 		health -= damage;
+		healthBar.value = health;
 
 		CheckDead (); // check if the player is dead after taking damage
 	}
