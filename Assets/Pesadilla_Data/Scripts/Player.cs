@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
 	public Transform transform;
 	string m_ClipName;
 	AnimatorClipInfo[] m_CurrentClipInfo;
+	public Text levelText;
+	public static int levelCount = 1;
+	public static bool isBoss = false;
 
 
 	private bool isMoving = false;
@@ -23,10 +26,14 @@ public class Player : MonoBehaviour
 	private string Direction;
 	private int health = 20;
 	private bool isAttacking = false;
+	private int level_count;
 
 	void Awake (){
-        GameObject g = GameObject.Find ("GameManager");
+
+		GameObject g = GameObject.Find ("GameManager");
+
 		boardScript = g.GetComponent<BoardCreator> ();
+
 	}
 
 	//Start overrides the Start function of MovingObject
@@ -37,7 +44,16 @@ public class Player : MonoBehaviour
 		//Get a component reference to the Player's animator component
 		animator = GetComponent<Animator>();
 
+		levelText = GameObject.Find("LevelText").GetComponent<Text>();
 
+		if(isBoss == false)
+		{
+			levelText.text = "Level " + levelCount;
+		}
+		else
+		{
+			levelText.text = "BOSS";
+		}
 	}
 
 	void TakeDamage(int damage){
@@ -206,18 +222,23 @@ public class Player : MonoBehaviour
 	private void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Exit") {
             //print (scenePaths);
-
             if (boardScript.GetRoomLength() == 1)
             {
+								levelCount++;
+								isBoss = false;
+
                 Destroy(GameObject.Find("PauseGUI"));
 
-                SceneManager.LoadSceneAsync("Main");
+
+                SceneManager.LoadScene("Main");
                 return;
             }
             else
             {
                 DontDestroyOnLoad(GameObject.Find("PauseGUI"));
-                SceneManager.LoadSceneAsync("Boss");
+								isBoss = true;
+
+                SceneManager.LoadScene("Boss");
             }
 
 
