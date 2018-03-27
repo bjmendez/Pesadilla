@@ -11,11 +11,14 @@ public class Enemy1 : MonoBehaviour {
 	public float aggroDistance;
 	public float attackDistance;
 	public int enemyHealth;
+	public Transform transform;
 
 	private Animator animator;
 	private Rigidbody2D rb2d;
 	private Transform target;
 	private bool isMoving;
+	public float fireRate = 0.75F;
+	private float nextFire = 0.0F;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +26,19 @@ public class Enemy1 : MonoBehaviour {
 		//animator.SetTrigger ("Enemy1FrontIdle");
 		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
 	}
-	
+
+
+	void TakeDamage(int damage){
+		enemyHealth -= damage;
+		CheckDead ();
+	}
+
+	void CheckDead(){
+		if (enemyHealth <= 0) {
+			Destroy (gameObject);
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		int enemyAnimator = enemyDirection ();
@@ -53,6 +68,20 @@ public class Enemy1 : MonoBehaviour {
 				}
 			}
 		}
+		if(Time.time > nextFire){
+			nextFire = Time.time + fireRate;
+			Vector2 A = new Vector2 (transform.position.x, transform.position.y);
+
+			Collider2D[] hitPlayer = Physics2D.OverlapCircleAll (A, 0.5f);
+			for (int i = 0; i < hitPlayer.Length; i++) {
+				if (hitPlayer[i].tag == "Player") {
+					hitPlayer[i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+				}
+			}
+		}
+
+
+
 	}
 		
 	//Current direction enemy is moving in so we can set an animator trigger

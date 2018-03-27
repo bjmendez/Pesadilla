@@ -22,12 +22,11 @@ public class BoardCreator : MonoBehaviour
 	public int corridorWidth;
 	public GameObject[] floorTiles;                           // An array of floor tile prefabs.                          
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
-	public GameObject player;
-	public GameObject enemy; 
-	public GameObject enemy2;
-	public GameObject exit;
+	public GameObject player;								  // player game object
+	public GameObject enemy; 								 // enemy game object
+	public GameObject exit;									// exit game object
 
-	private int ranNum; 
+	private int ranNum; 									// random number
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	public Room[] rooms;                                     // All the rooms that are created for this board.
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
@@ -79,14 +78,18 @@ public class BoardCreator : MonoBehaviour
 	
 
 		// Setup the first room, there is no previous corridor so we do not use one.
+		//primary use is boss room
 		rooms[0].SetupRoom(roomWidth, roomHeight, columns, rows);
 		if (rooms.Length == 1) {
+			//spawn player in front of room
 			Vector3 playerPos = new Vector3 (rooms[0].xPos+5, rooms[0].yPos + 3, 0);
 			Instantiate(player, playerPos, Quaternion.identity);
 			Vector3 enemyPos = new Vector3  (rooms[0].xPos+5, rooms[0].yPos + 7, 0);
-			Vector3 enemyPos2 = new Vector3 (rooms [0].xPos + 6, rooms [0].yPos + 5, 0);
+
+			//spawn boss
 			Instantiate(enemy, enemyPos, Quaternion.identity);
-			Instantiate (enemy2, enemyPos2, Quaternion.identity);
+
+			//put exit door behind boss
 			Vector3 exitPos = new Vector3 (rooms[0].xPos + 7, rooms[0].yPos + 15, 0);
 			Instantiate(exit, exitPos, Quaternion.identity);
 			return;
@@ -114,8 +117,10 @@ public class BoardCreator : MonoBehaviour
 				corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
 			}
 
+			//if  the first room
 			if (i == Mathf.Floor(rooms.Length * .5f))
-			{
+			{	
+				//spawn player in middle of room
 				Vector3 playerPos = new Vector3 (rooms[i].xPos + 10, rooms[i].yPos+10, 0);
 				Instantiate(player, playerPos, Quaternion.identity);
 
@@ -126,19 +131,19 @@ public class BoardCreator : MonoBehaviour
 
 		}
 		ranNum = Random.Range(0,1); 
-
+		//randomly choose one of the furthest rooms on either the left or right to put exit to next level
 		if (ranNum == 0) {
-			Vector3 exitPos = new Vector3 (rooms[0].xPos + 10, rooms[0].yPos + 20, 0);
+			Vector3 exitPos = new Vector3 (rooms[0].xPos + 12, rooms[0].yPos + 20, 0);
 			Instantiate(exit, exitPos, Quaternion.identity);
 		}
 		else{
-			Vector3 exitPos = new Vector3 (rooms[1].xPos + 10, rooms[1].yPos + 20, 0);
+			Vector3 exitPos = new Vector3 (rooms[1].xPos + 12, rooms[1].yPos + 20, 0);
 			Instantiate(exit, exitPos, Quaternion.identity);
 		}
 
 	}
 
-
+	//get the number of rooms
 	public int GetRoomLength(){
 		return rooms.Length;
 	}
@@ -161,12 +166,13 @@ public class BoardCreator : MonoBehaviour
 					int yCoord = currentRoom.yPos + k;
 
 					// The coordinates in the jagged array are based on the room's position and it's width and height.
+					//give every tile a 1 in X chance of spawning an enemy on top of it
 					ranNum = Random.Range(0,250); 
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
-						Vector3 enemyPos2 = new Vector3 (xCoord, yCoord, 0);
+
 						Instantiate(enemy, enemyPos, Quaternion.identity);
-						Instantiate (enemy2, enemyPos2, Quaternion.identity);
+
 					}
 
 					tiles[xCoord][yCoord] = TileType.Floor;
@@ -180,6 +186,7 @@ public class BoardCreator : MonoBehaviour
 
 	void SetTilesValuesForCorridors ()
 	{
+		//no need for corrdiors if only one room
 		if (rooms.Length == 1) {
 			return;
 		}
@@ -213,6 +220,7 @@ public class BoardCreator : MonoBehaviour
 					break;
 				}
 
+				//Similar to doing the corridor length as above this does corridor width
 				for (int k = 0; k < corridorWidth; k++) {
 					
 

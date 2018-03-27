@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  transform: {fileID: 0}
+  transform: {fileID: 4765090631302594}
 --- !u!124 &124654055681162174
 Behaviour:
   m_ObjectHideFlags: 1
