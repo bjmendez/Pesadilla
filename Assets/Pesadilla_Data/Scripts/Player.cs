@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 	private BoardCreator boardScript;
 	private string Direction;
-	private int health;
+	private int health = 20;
 	private bool isAttacking = false;
 	
 	void Awake (){
@@ -39,7 +39,19 @@ public class Player : MonoBehaviour
 
 	
 	}
-	
+
+	void TakeDamage(int damage){
+		health -= damage;
+
+		CheckDead ();
+	}
+
+	void CheckDead(){
+		if (health <= 0) {
+			animator.SetTrigger("playerDeath");
+
+		}
+	}
 	
 	//This function is called when the behaviour becomes disabled or inactive.
 
@@ -72,182 +84,122 @@ public class Player : MonoBehaviour
 	private void Update ()
 	{
 
-		
-		if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
-			isMoving = false;
-		} else {
-			isMoving = true;
-		}
+	
+
+
+		if (!PauseMenu.isPaused) {
+
+			if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
+				isMoving = false;
+			} else {
+				isMoving = true;
+			}
 	
 	
 
 
-		if (Input.GetKeyDown(KeyCode.A) && isMoving)
-		{
-			animator.SetTrigger ("playerLeft");
-			Direction = "LEFT";
+			if (Input.GetKeyDown (KeyCode.A) && isMoving) {
+				animator.SetTrigger ("playerLeft");
+				Direction = "LEFT";
 
 
-		}
-		else if (Input.GetKeyDown(KeyCode.D) && isMoving)
-		{
-			animator.SetTrigger ("playerRight");
-			Direction = "RIGHT";
+			} else if (Input.GetKeyDown (KeyCode.D) && isMoving) {
+				animator.SetTrigger ("playerRight");
+				Direction = "RIGHT";
 
 
-		}
-		else if (Input.GetKeyDown(KeyCode.W) && isMoving )
-		{
-			animator.SetTrigger ("playerBack");
-			Direction = "BACK";
+			} else if (Input.GetKeyDown (KeyCode.W) && isMoving) {
+				animator.SetTrigger ("playerBack");
+				Direction = "BACK";
 
-		}
-		else if (Input.GetKeyDown(KeyCode.S) && isMoving)
-		{
-			animator.SetTrigger ("playerFoward");
-			Direction = "FRONT";
+			} else if (Input.GetKeyDown (KeyCode.S) && isMoving) {
+				animator.SetTrigger ("playerFoward");
+				Direction = "FRONT";
 
-		}
+			}
 
-		if (Input.GetKeyUp(KeyCode.A) && !isMoving)
-		{
+			if (Input.GetKeyUp (KeyCode.A) && !isMoving) {
 			
-			animator.SetTrigger ("playerLIdle");
-			Direction = "LEFT";
+				animator.SetTrigger ("playerLIdle");
+				Direction = "LEFT";
 
 
-		}
-		else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
-		{
-			animator.SetTrigger ("playerRIdle");
-			Direction = "RIGHT";
+			} else if (Input.GetKeyUp (KeyCode.D) && !isMoving) {
+				animator.SetTrigger ("playerRIdle");
+				Direction = "RIGHT";
 
-		}
-		else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
-		{
-			animator.SetTrigger ("playerBIdle");
-			Direction = "BACK";
+			} else if (Input.GetKeyUp (KeyCode.W) && !isMoving) {
+				animator.SetTrigger ("playerBIdle");
+				Direction = "BACK";
 
 
-		}
-		else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
-		{
-			animator.SetTrigger ("playerFIdle");
-			Direction = "FRONT";
+			} else if (Input.GetKeyUp (KeyCode.S) && !isMoving) {
+				animator.SetTrigger ("playerFIdle");
+				Direction = "FRONT";
 		
 
-		}
+			}
 
-		if (Input.GetMouseButtonDown (0)) {
+			if (Input.GetMouseButtonDown (0)) {
 			
 
 
-			if(Direction == "RIGHT"){
-				animator.SetTrigger ("rightAttack");
+				if (Direction == "RIGHT") {
+					animator.SetTrigger ("rightAttack");
+
+					Vector2 A = new Vector2 (transform.position.x+1, transform.position.y+1);
+					Vector2 B = new Vector2 (transform.position.x+1, transform.position.y-1);
+
+					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
+					for (int i = 0; i < hitObjects.Length; i++) {
+						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+
+					}
+				
+
+				}
+				if (Direction == "LEFT") {
+					animator.SetTrigger ("leftAttack");
+					Vector2 A = new Vector2 (transform.position.x-1, transform.position.y+1);
+					Vector2 B = new Vector2 (transform.position.x-1, transform.position.y-1);
+
+					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
+					for (int i = 0; i < hitObjects.Length; i++) {
+						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+					}
+
+				}
+				if (Direction == "BACK") {
+					animator.SetTrigger ("backAttack");
+					Vector2 A = new Vector2 (transform.position.x-1, transform.position.y+1);
+					Vector2 B = new Vector2 (transform.position.x+1, transform.position.y+1);
+
+
+					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
+					for (int i = 0; i < hitObjects.Length; i++) {
+						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+					}
+
+				}
+				if (Direction == "FRONT") {
+					animator.SetTrigger ("frontAttack");
+					Vector2 A = new Vector2 (transform.position.x-1, transform.position.y-1);
+					Vector2 B = new Vector2 (transform.position.x+1, transform.position.y-1);
+
+					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
+					for (int i = 0; i < hitObjects.Length; i++) {
+						hitObjects [i].SendMessage ("TakeDamage", 5, SendMessageOptions.DontRequireReceiver);
+					}
+
+				}
+
+
+
 			}
-			if (Direction == "LEFT") {
-				animator.SetTrigger ("leftAttack");
-			}
-			if (Direction == "BACK") {
-				animator.SetTrigger ("backAttack");
-			}
-			if (Direction == "FRONT") {
-				animator.SetTrigger ("frontAttack");
-			}
-		
-		}
-
-
-        if (!PauseMenu.isPaused) 
-        {
-
-            if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
-			isMoving = false;
-		} else {
-			isMoving = true;
-		}
-	
-	
-
-
-		if (Input.GetKeyDown(KeyCode.A) && isMoving)
-		{
-			animator.SetTrigger ("playerLeft");
-			Direction = "LEFT";
 
 
 		}
-		else if (Input.GetKeyDown(KeyCode.D) && isMoving)
-		{
-			animator.SetTrigger ("playerRight");
-			Direction = "RIGHT";
-
-
-		}
-		else if (Input.GetKeyDown(KeyCode.W) && isMoving )
-		{
-			animator.SetTrigger ("playerBack");
-			Direction = "BACK";
-
-		}
-		else if (Input.GetKeyDown(KeyCode.S) && isMoving)
-		{
-			animator.SetTrigger ("playerFoward");
-			Direction = "FRONT";
-
-		}
-
-		if (Input.GetKeyUp(KeyCode.A) && !isMoving)
-		{
-			
-			animator.SetTrigger ("playerLIdle");
-			Direction = "LEFT";
-
-
-		}
-		else if (Input.GetKeyUp(KeyCode.D) && !isMoving)
-		{
-			animator.SetTrigger ("playerRIdle");
-			Direction = "RIGHT";
-
-		}
-		else if (Input.GetKeyUp(KeyCode.W) && !isMoving)
-		{
-			animator.SetTrigger ("playerBIdle");
-			Direction = "BACK";
-
-
-		}
-		else if (Input.GetKeyUp(KeyCode.S) && !isMoving)
-		{
-			animator.SetTrigger ("playerFIdle");
-			Direction = "FRONT";
-		
-
-		}
-
-		if (Input.GetMouseButtonDown (0)) {
-			
-
-
-			if(Direction == "RIGHT"){
-				animator.SetTrigger ("rightAttack");
-			}
-			if (Direction == "LEFT") {
-				animator.SetTrigger ("leftAttack");
-			}
-			if (Direction == "BACK") {
-				animator.SetTrigger ("backAttack");
-			}
-			if (Direction == "FRONT") {
-				animator.SetTrigger ("frontAttack");
-			}
-		
-		}
-
-
 	}
-
 
 	
     //Loads levels of the dungeon

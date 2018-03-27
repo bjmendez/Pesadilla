@@ -180,8 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 0
-  enemySpeed: 5
+  enemySpeed: 2.5
   enemyDistance: 1.5
   aggroDistance: 15
   attackDistance: 1
-  enemyHealth: 0
+  enemyHealth: 10
+  transform: {fileID: 495068}
