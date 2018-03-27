@@ -75,7 +75,7 @@ public class Enemy1 : MonoBehaviour {
 			Collider2D[] hitPlayer = Physics2D.OverlapCircleAll (A, 0.5f);
 			for (int i = 0; i < hitPlayer.Length; i++) {
 				if (hitPlayer[i].tag == "Player") {
-					hitPlayer[i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+					hitPlayer[i].SendMessage ("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
 				}
 			}
 		}

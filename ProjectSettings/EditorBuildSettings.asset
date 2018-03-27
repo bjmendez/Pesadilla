@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Pesadilla_Data/Scenes/Boss.unity
     guid: bb9fc855a508e13438d777c57d6decfe
+  - enabled: 1
+    path: Assets/Pesadilla_Data/Scenes/YouWin.unity
+    guid: c2c6fa7b5722eef4cba30df32b6e5997
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

@@ -181,8 +181,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 0
   enemySpeed: 2.5
-  enemyDistance: 1.5
+  enemyDistance: 0
   aggroDistance: 15
   attackDistance: 1
   enemyHealth: 10
   transform: {fileID: 495068}
+  fireRate: 0.75
