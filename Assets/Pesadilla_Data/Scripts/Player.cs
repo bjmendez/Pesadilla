@@ -17,14 +17,15 @@ public class Player : MonoBehaviour
 	public Text levelText;
 	public static int levelCount = 1;
 	public static bool isBoss = false;
-
+	public static int health = 20;
+	public Text healthText;
+	public Slider healthBar;
 
 	private bool isMoving = false;
 	private Rigidbody2D rb2d;
 	private Animator animator;					//Used to store a reference to the Player's animator component.
 	private BoardCreator boardScript;
 	private string Direction;
-	private int health = 20;
 	private bool isAttacking = false;
 	private int level_count;
 
@@ -45,6 +46,8 @@ public class Player : MonoBehaviour
 		animator = GetComponent<Animator>();
 
 		levelText = GameObject.Find("LevelText").GetComponent<Text>();
+		healthText = GameObject.Find("HealthText").GetComponent<Text>();
+		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
 
 		if(isBoss == false)
 		{
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
 
 	void TakeDamage(int damage){
 		health -= damage;
+		healthBar.value = health;
 
 		CheckDead ();
 	}
