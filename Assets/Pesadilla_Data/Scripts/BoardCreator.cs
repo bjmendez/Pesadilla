@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +20,7 @@ public class BoardCreator : MonoBehaviour
 	public IntRange roomHeight = new IntRange (3, 10);        // The range of heights rooms can have.
 	public IntRange corridorLength = new IntRange (6, 10);    // The range of lengths corridors between rooms can have.
 	public int corridorWidth;
-	public GameObject[] floorTiles;                           // An array of floor tile prefabs.                          
+	public GameObject[] floorTiles;                           // An array of floor tile prefabs.
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
 	public GameObject player;								  // player game object
 	public GameObject enemy; 								 // enemy game object
@@ -30,7 +30,7 @@ public class BoardCreator : MonoBehaviour
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	public Room[] rooms;                                     // All the rooms that are created for this board.
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
-	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.									 
+	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
     private Image UIImage;                                   //Image object displaying our controls GUI.
 
     public void BoardSceneSetUp ()
@@ -47,7 +47,7 @@ public class BoardCreator : MonoBehaviour
 		SetTilesValuesForCorridors ();
 
 		InstantiateTiles ();
-		
+
 		//InstantiateOuterWalls ();
 	}
 
@@ -75,7 +75,7 @@ public class BoardCreator : MonoBehaviour
 
 		// Create the first room and corridor.
 		rooms[0] = new Room ();
-	
+
 
 		// Setup the first room, there is no previous corridor so we do not use one.
 		//primary use is boss room
@@ -119,7 +119,7 @@ public class BoardCreator : MonoBehaviour
 
 			//if  the first room
 			if (i == Mathf.Floor(rooms.Length * .5f))
-			{	
+			{
 				//spawn player in middle of room
 				Vector3 playerPos = new Vector3 (rooms[i].xPos + 10, rooms[i].yPos+10, 0);
 				Instantiate(player, playerPos, Quaternion.identity);
@@ -130,7 +130,7 @@ public class BoardCreator : MonoBehaviour
 
 
 		}
-		ranNum = Random.Range(0,1); 
+		ranNum = Random.Range(0,1);
 		//randomly choose one of the furthest rooms on either the left or right to put exit to next level
 		if (ranNum == 0) {
 			Vector3 exitPos = new Vector3 (rooms[0].xPos + 12, rooms[0].yPos + 20, 0);
@@ -167,7 +167,7 @@ public class BoardCreator : MonoBehaviour
 
 					// The coordinates in the jagged array are based on the room's position and it's width and height.
 					//give every tile a 1 in X chance of spawning an enemy on top of it
-					ranNum = Random.Range(0,250); 
+					ranNum = Random.Range(0,250);
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
 
@@ -195,7 +195,7 @@ public class BoardCreator : MonoBehaviour
 		{
 			Corridor currentCorridor = corridors[i];
 
-		
+
 
 
 			// and go through it's length.
@@ -222,7 +222,7 @@ public class BoardCreator : MonoBehaviour
 
 				//Similar to doing the corridor length as above this does corridor width
 				for (int k = 0; k < corridorWidth; k++) {
-					
+
 
 					switch (currentCorridor.direction) {
 					case Direction.North:
@@ -244,9 +244,9 @@ public class BoardCreator : MonoBehaviour
 					}
 
 					tiles [xCoord] [yCoord] = TileType.Floor;
-				} 
+				}
 				// Set the tile at these coordinates to Floor.
-				
+
 			}
 
 
@@ -273,7 +273,7 @@ public class BoardCreator : MonoBehaviour
 				{
 					// ... instantiate a wall over the top.
 					InstantiateFromArray (outerWallTiles, i, j);
-				} 
+				}
 			}
 		}
 	}

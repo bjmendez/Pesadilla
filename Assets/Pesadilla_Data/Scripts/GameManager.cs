@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-	
+
 
 	private BoardCreator boardScript;
 
 	// Use this for initialization
 	void Awake () {
-
 
 		boardScript = GetComponent<BoardCreator> ();
 
@@ -23,6 +22,6 @@ public class GameManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }

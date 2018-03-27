@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class Room 
+public class Room
 {
 	public int xPos;                      // The x coordinate of the lower left tile of the room.
 	public int yPos;                      // The y coordinate of the lower left tile of the room.

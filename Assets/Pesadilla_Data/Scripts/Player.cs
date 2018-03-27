@@ -6,15 +6,18 @@ using System.Collections;
 using System.IO;
 
 
-	
+
 public class Player : MonoBehaviour
 {
-	
+
 	public float speed = 1.5f;
 	public Transform transform;
 	string m_ClipName;
 	AnimatorClipInfo[] m_CurrentClipInfo;
-	
+	public Text levelText;
+	public static int levelCount = 1;
+	public static bool isBoss = false;
+
 
 	private bool isMoving = false;
 	private Rigidbody2D rb2d;
@@ -23,12 +26,16 @@ public class Player : MonoBehaviour
 	private string Direction;
 	private int health = 20;
 	private bool isAttacking = false;
-	
+	private int level_count;
+
 	void Awake (){
-        GameObject g = GameObject.Find ("GameManager");
+
+		GameObject g = GameObject.Find ("GameManager");
+
 		boardScript = g.GetComponent<BoardCreator> ();
+
 	}
-	
+
 	//Start overrides the Start function of MovingObject
 	protected void Start ()
 	{
@@ -37,7 +44,16 @@ public class Player : MonoBehaviour
 		//Get a component reference to the Player's animator component
 		animator = GetComponent<Animator>();
 
-	
+		levelText = GameObject.Find("LevelText").GetComponent<Text>();
+
+		if(isBoss == false)
+		{
+			levelText.text = "Level " + levelCount;
+		}
+		else
+		{
+			levelText.text = "BOSS";
+		}
 	}
 
 	void TakeDamage(int damage){
@@ -52,10 +68,10 @@ public class Player : MonoBehaviour
 
 		}
 	}
-	
+
 	//This function is called when the behaviour becomes disabled or inactive.
 
-		
+
 	private void FixedUpdate(){
 
 		float moveHorizontal = Input.GetAxisRaw ("Horizontal");
@@ -77,14 +93,14 @@ public class Player : MonoBehaviour
 		rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
 
 
-	
+
 
 	}
 
 	private void Update ()
 	{
 
-	
+
 
 
 		if (!PauseMenu.isPaused) {
@@ -94,8 +110,8 @@ public class Player : MonoBehaviour
 			} else {
 				isMoving = true;
 			}
-	
-	
+
+
 
 
 			if (Input.GetKeyDown (KeyCode.A) && isMoving) {
@@ -119,7 +135,7 @@ public class Player : MonoBehaviour
 			}
 
 			if (Input.GetKeyUp (KeyCode.A) && !isMoving) {
-			
+
 				animator.SetTrigger ("playerLIdle");
 				Direction = "LEFT";
 
@@ -136,12 +152,12 @@ public class Player : MonoBehaviour
 			} else if (Input.GetKeyUp (KeyCode.S) && !isMoving) {
 				animator.SetTrigger ("playerFIdle");
 				Direction = "FRONT";
-		
+
 
 			}
 
 			if (Input.GetMouseButtonDown (0)) {
-			
+
 
 
 				if (Direction == "RIGHT") {
@@ -155,7 +171,7 @@ public class Player : MonoBehaviour
 						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
 
 					}
-				
+
 
 				}
 				if (Direction == "LEFT") {
@@ -201,35 +217,39 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	
+
     //Loads levels of the dungeon
 	private void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Exit") {
             //print (scenePaths);
-
             if (boardScript.GetRoomLength() == 1)
             {
+								levelCount++;
+								isBoss = false;
+
                 Destroy(GameObject.Find("PauseGUI"));
 
-                SceneManager.LoadSceneAsync("Main");
+
+                SceneManager.LoadScene("Main");
                 return;
             }
             else
             {
                 DontDestroyOnLoad(GameObject.Find("PauseGUI"));
-                SceneManager.LoadSceneAsync("Boss");
+								isBoss = true;
+
+                SceneManager.LoadScene("Boss");
             }
 
 
         }
     }
-	
 
 
 
-	
+
+
+
 
 
 }
-
-
