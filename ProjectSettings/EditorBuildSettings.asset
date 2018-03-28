@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Pesadilla_Data/Scenes/Boss.unity
     guid: bb9fc855a508e13438d777c57d6decfe
+  - enabled: 1
+    path: Assets/Pesadilla_Data/Scenes/GameOver.unity
+    guid: ec1e26b2020c4409e87b65e0d5a420da
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

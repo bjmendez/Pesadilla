@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 	void CheckDead(){
 		if (health <= 0) {
 			animator.SetTrigger("playerDeath");
-
+			SceneManager.LoadScene("GameOver");
 		}
 	}
 
