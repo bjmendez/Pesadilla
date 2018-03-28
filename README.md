@@ -47,3 +47,6 @@ Go to the release and download the the zip. Once you have downloaded the zip jus
 
 # Prototype youtube link
 https://www.youtube.com/watch?v=AgaNH6g_O3I
+
+# Alpha Release youtube link
+https://www.youtube.com/watch?v=6Ca65GpsrX8
