@@ -25,6 +25,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject player;								  // player game object
 	public GameObject enemy; 								 // enemy game object
 	public GameObject exit;									// exit game object
+	public GameObject boss1;
 
 	private int ranNum; 									// random number
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
@@ -84,10 +85,10 @@ public class BoardCreator : MonoBehaviour
 			//spawn player in front of room
 			Vector3 playerPos = new Vector3 (rooms[0].xPos+5, rooms[0].yPos + 3, 0);
 			Instantiate(player, playerPos, Quaternion.identity);
-			Vector3 enemyPos = new Vector3  (rooms[0].xPos+5, rooms[0].yPos + 7, 0);
+			Vector3 BossPos = new Vector3  (rooms[0].xPos+5, rooms[0].yPos + 7, 0);
 
 			//spawn boss
-			Instantiate(enemy, enemyPos, Quaternion.identity);
+			Instantiate(boss1, BossPos, Quaternion.identity);
 
 			//put exit door behind boss
 			Vector3 exitPos = new Vector3 (rooms[0].xPos + 7, rooms[0].yPos + 15, 0);
