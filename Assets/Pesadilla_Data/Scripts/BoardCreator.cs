@@ -167,7 +167,7 @@ public class BoardCreator : MonoBehaviour
 
 					// The coordinates in the jagged array are based on the room's position and it's width and height.
 					//give every tile a 1 in X chance of spawning an enemy on top of it
-					ranNum = Random.Range(0,150);
+					ranNum = Random.Range(0,200);
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
 
