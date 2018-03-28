@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
-	public float transitionTime = 0.5f;
+	public float transitionTime = 3.0f;
 
 	// Update is called once per frame
 	void Update () {
