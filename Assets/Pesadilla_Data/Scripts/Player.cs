@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
 		levelText = GameObject.Find("LevelText").GetComponent<Text>();
 		healthText = GameObject.Find("HealthText").GetComponent<Text>();
 		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
+		healthBar.value = health;
 
 
 		levelText = GameObject.Find("LevelText").GetComponent<Text>(); // Get the current text that is on the screen
@@ -81,9 +82,13 @@ public class Player : MonoBehaviour
 	void CheckDead(){ //Check if player is dead
 		if (health <= 0) { // if health is less than or equal to 0 than player is dead
 			animator.SetTrigger("playerDeath"); // trigger player dying animation
-      SceneManager.LoadScene("GameOver");
+
+		
+			health = 20;
+			SceneManager.LoadScene("GameOver");
 
 		}
+
 	}
 
 
@@ -298,6 +303,8 @@ public class Player : MonoBehaviour
 
 				//If its the top of the tower load the youwin scene
 				if (levelCount == 4) {
+					levelCount = 1;
+					health = 20;
 					SceneManager.LoadScene("YouWin");
 					return;
 				}
