@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void TakeDamage(int damage){ //Method to decrement health
+	public void TakeDamage(int damage){ //Method to decrement health
 		health -= damage;
 		healthBar.value = health;
 

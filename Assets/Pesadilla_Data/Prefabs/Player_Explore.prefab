@@ -202,6 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   transform: {fileID: 4765090631302594}
+  levelText: {fileID: 0}
+  healthText: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!124 &124654055681162174
 Behaviour:
   m_ObjectHideFlags: 1
@@ -242,7 +245,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -900995045
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300296, guid: 841181c1771fb604fa318ec60f76d623, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
