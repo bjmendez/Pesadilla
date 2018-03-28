@@ -77,9 +77,11 @@ public class Player : MonoBehaviour
 		CheckDead (); // check if the player is dead after taking damage
 	}
 
+
 	void CheckDead(){ //Check if player is dead
 		if (health <= 0) { // if health is less than or equal to 0 than player is dead
 			animator.SetTrigger("playerDeath"); // trigger player dying animation
+      SceneManager.LoadScene("GameOver");
 
 		}
 	}
