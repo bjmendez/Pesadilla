@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 	public static bool isBoss = false;			// are we currently in a boss room
 
 
-	public static int health = 20;
+	public static int health = 50;
 	public Text healthText;
 	public Slider healthBar;
 
@@ -74,6 +74,8 @@ public class Player : MonoBehaviour
 	void TakeDamage(int damage){ //Method to decrement health
 		health -= damage;
 		healthBar.value = health;
+
+		//Debug.Log (health);
 
 		CheckDead (); // check if the player is dead after taking damage
 	}
