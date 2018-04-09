@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 	public static bool isBoss = false;			// are we currently in a boss room
 
 
-	public static int health = 50;
+	public static int health = 20;
 	public Text healthText;
 	public Slider healthBar;
 
