@@ -75,6 +75,8 @@ public class Player : MonoBehaviour
 		health -= damage;
 		healthBar.value = health;
 
+		//Debug.Log (health);
+
 		CheckDead (); // check if the player is dead after taking damage
 	}
 
