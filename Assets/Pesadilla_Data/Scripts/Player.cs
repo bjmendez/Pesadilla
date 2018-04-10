@@ -91,16 +91,17 @@ public class Player : MonoBehaviour
 			StartCoroutine(Example());
 		
 			health = 20;
-			SceneManager.LoadScene("GameOver");
+
 
 		}
 
 	}
 	IEnumerator Example() 
 	{
-		print(Time.time);
-		yield return new WaitForSeconds(10);
-		print(Time.time);
+		
+		yield return new WaitForSeconds(3);
+		SceneManager.LoadScene("GameOver");
+
 	}
 
 
