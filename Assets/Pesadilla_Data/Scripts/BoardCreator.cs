@@ -207,7 +207,7 @@ public class BoardCreator : MonoBehaviour
 					ranNum = Random.Range(0,enemynumber-rng);
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
-						Vector3 enemy2Pos = new Vector3 (xCoord+2, yCoord+2, 0);
+						Vector3 enemy2Pos = new Vector3 (xCoord, yCoord, 0);
 
 						enemycount+=2;
 
