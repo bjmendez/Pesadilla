@@ -21,7 +21,14 @@ public class Boss1 : MonoBehaviour {
 	private Vector3 playerPosition;			// Will hold the player's current position in vector format.
 
 
+	private BoardCreator boardScript;
 
+
+	void Awake(){
+		GameObject g = GameObject.Find ("GameManager"); // find the game manager object
+
+		boardScript = g.GetComponent<BoardCreator> (); // use to it to get a reference to the current boardcreator
+	}
 
 	// This method will always run first.
 	void Start () {
@@ -72,7 +79,7 @@ public class Boss1 : MonoBehaviour {
 		// Caluculates and converts the difference to a unit vector. 
 		difference = transform.position - playerPosition;
 
-		Debug.Log (BossHealth);
+
 
 		if (isBossDead) {
 
@@ -149,7 +156,7 @@ public class Boss1 : MonoBehaviour {
 		timeCountNow += Time.deltaTime;
 		// Debug.Log (counting);
 
-		if (other.gameObject.name ==  "Player_Explore(Clone)" && (timeCountNow - timeCountStart) > .5) {
+		if (other.gameObject.name ==  "Player_Explore(Clone)" && (timeCountNow - timeCountStart) > 1) {
 			timeCountStart = timeCountNow;
 
 			// Calls the TakeDamage() method from the other GameObject and 
@@ -181,7 +188,7 @@ public class Boss1 : MonoBehaviour {
 	void TakeDamage(int damage){
 		BossHealth -= damage;
 		CheckDead ();
-		Debug.Log (BossHealth);
+
 	}
 
 	void CheckDead(){
@@ -189,6 +196,7 @@ public class Boss1 : MonoBehaviour {
 			isBossDead = true;
 			animator.SetTrigger ("BossDied");
 			Destroy (this.gameObject);
+			boardScript.decreaseEnemyCount ();
 		}
 	}
 
