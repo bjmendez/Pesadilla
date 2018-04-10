@@ -88,8 +88,10 @@ public class Player : MonoBehaviour
 	void CheckDead(){ //Check if player is dead
 		if (health <= 0) { // if health is less than or equal to 0 than player is dead
 			animator.SetTrigger("playerDeath"); // trigger player dying animation
+			isMoving = false;
 			StartCoroutine(Example());
-		
+
+
 			health = 20;
 
 

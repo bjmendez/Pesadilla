@@ -81,6 +81,12 @@ public class Boss1 : MonoBehaviour {
 
 
 
+
+
+
+		timeCountNow += Time.deltaTime;
+
+
 		if (isBossDead) {
 
 			animator.SetTrigger ("BossDead");
@@ -88,7 +94,7 @@ public class Boss1 : MonoBehaviour {
 		} else {
 			
 
-			if (magnitude (difference) > .08) {
+			if (magnitude (difference) > .5) {
 			
 				difference = normalizeVect (difference);
 
@@ -98,8 +104,20 @@ public class Boss1 : MonoBehaviour {
 
 				// The SetFloat Method from the animator object dictates what movement the 
 				// Boss demonstrates. 
+
+				/*
 				animator.SetFloat ("Horizontal", -difference.x);
 				animator.SetFloat ("Vertical", -difference.y);
+				*/
+
+
+				if ((timeCountNow - timeCountStart) > 2) {
+					
+					animator.SetFloat ("Horizontal", -difference.x);
+					animator.SetFloat ("Vertical", -difference.y);
+					timeCountStart = 0.0f;
+					timeCountNow = 0.0f;
+				}
 
 			}
 
