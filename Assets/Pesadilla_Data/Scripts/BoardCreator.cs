@@ -24,6 +24,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
 	public GameObject player;								  // player game object
 	public GameObject enemy; 								 // enemy game object
+	public GameObject enemy2;
 	public GameObject exit;									// exit game object
 	public GameObject boss1;
 
@@ -33,6 +34,7 @@ public class BoardCreator : MonoBehaviour
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
 	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
     private Image UIImage;                                   //Image object displaying our controls GUI.
+
 
     public void BoardSceneSetUp ()
 	{
@@ -48,6 +50,7 @@ public class BoardCreator : MonoBehaviour
 		SetTilesValuesForCorridors ();
 
 		InstantiateTiles ();
+
 
 		//InstantiateOuterWalls ();
 	}
@@ -171,8 +174,10 @@ public class BoardCreator : MonoBehaviour
 					ranNum = Random.Range(0,200);
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
+						Vector3 enemy2Pos = new Vector3 (xCoord+2, yCoord+2, 0);
 
 						Instantiate(enemy, enemyPos, Quaternion.identity);
+						Instantiate (enemy2, enemy2Pos, Quaternion.identity);
 
 					}
 
