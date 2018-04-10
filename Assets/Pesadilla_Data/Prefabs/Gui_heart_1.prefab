@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4154260141634314}
   - component: {fileID: 212449918146010630}
   - component: {fileID: 60459130135406342}
+  - component: {fileID: 114868012792210590}
   m_Layer: 0
   m_Name: Gui_heart_1
   m_TagString: Health
@@ -50,7 +51,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -71,6 +72,17 @@ PolygonCollider2D:
       - {x: 0.20837687, y: -0.024732098}
       - {x: 0.20174953, y: 0.24463885}
       - {x: -0.23659688, y: 0.24463893}
+--- !u!114 &114868012792210590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508660611193784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e46a4cff292afd47a1ad35b02eb26d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212449918146010630
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -102,8 +114,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -900995045
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a5670cd202391304693e38cc29525b6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
