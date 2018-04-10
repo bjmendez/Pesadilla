@@ -186,4 +186,5 @@ MonoBehaviour:
   attackDistance: 1
   enemyHealth: 10
   transform: {fileID: 495068}
+  health: {fileID: 1508660611193784, guid: 173234f5c143c504ba220eec1b10b4de, type: 2}
   fireRate: 0.75

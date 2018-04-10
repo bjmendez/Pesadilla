@@ -12,31 +12,43 @@ public class Enemy1 : MonoBehaviour {
 	public float attackDistance;
 	public int enemyHealth;
 	public Transform transform;
-
+    public GameObject health;
 	private Animator animator;
 	private Rigidbody2D rb2d;
 	private Transform target;
 	private bool isMoving;
 	public float fireRate = 0.75F;
 	private float nextFire = 0.0F;
+    private GameObject healthD;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		animator = GetComponent<Animator> ();
 		//animator.SetTrigger ("Enemy1FrontIdle");
 		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
-	}
+        
+
+    }
 
 
 	void TakeDamage(int damage){
 		enemyHealth -= damage;
-		CheckDead ();
+        //Instantiate(health, transform.position, Quaternion.identity);
+        CheckDead ();
 	}
 
 	void CheckDead(){
 		if (enemyHealth <= 0) {
-			Destroy (gameObject);
-		}
+            
+            Vector3 lastpos=transform.position;
+            Destroy (gameObject);
+            int ChanceDrop = Random.Range(0, 101);
+            if (ChanceDrop <=50)
+            {
+                Instantiate(health, lastpos, Quaternion.identity); 
+            }
+
+        }
 	}
 
 	// Update is called once per frame

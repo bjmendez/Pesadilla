@@ -79,6 +79,11 @@ public class Player : MonoBehaviour
 
 		CheckDead (); // check if the player is dead after taking damage
 	}
+    void AddHealth(int amount)
+    {
+        health += amount;
+        healthBar.value = health;
+    }
 
 
 	void CheckDead(){ //Check if player is dead
