@@ -129,10 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7527853331cb14d45a6cae8a30f43c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 5
+  enemySpeed: 4
   stoppingDistance: 8
-  retreatDistance: 5
+  retreatDistance: 4
   aggroDistance: 15
+  enemyHealth: 1
   startTimeBetweenShots: 2
   projectile: {fileID: 1408079008170570, guid: 69a30e8d0678c0b4aa845626cfa9c3ad, type: 2}
 --- !u!212 &212500144697580106

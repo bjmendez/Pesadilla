@@ -8,8 +8,6 @@ public class Projectile : MonoBehaviour {
 
 	private Transform player;
 	private Vector2 target;
-	private float timeCountStart;
-	private float timeCountNow;
 
 	// Use this for initialization
 	void Start () {
@@ -27,23 +25,9 @@ public class Projectile : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D other){
-
-		timeCountStart = 0.0f;
-		timeCountNow = 0.0f;
-
-		if (other.gameObject.name ==  "Player_Explore(Clone)") {
-
-
-			// Calls the TakeDamage() method from the other GameObject and 
-			// passes 3 as am argument.
-			other.gameObject.SendMessage ("TakeDamage", 3);
-
-		}
-	}
-
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Player")) {
+			other.gameObject.SendMessage ("TakeDamage", 3);
 			DestroyProjectile ();
 		}
 	}
