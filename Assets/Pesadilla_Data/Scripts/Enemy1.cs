@@ -20,6 +20,15 @@ public class Enemy1 : MonoBehaviour {
 	public float fireRate = 0.75F;
 	private float nextFire = 0.0F;
 
+	private BoardCreator boardScript;
+
+
+	void Awake(){
+		GameObject g = GameObject.Find ("GameManager"); // find the game manager object
+
+		boardScript = g.GetComponent<BoardCreator> (); // use to it to get a reference to the current boardcreator
+	}
+
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -36,6 +45,7 @@ public class Enemy1 : MonoBehaviour {
 	void CheckDead(){
 		if (enemyHealth <= 0) {
 			Destroy (gameObject);
+			boardScript.decreaseEnemyCount ();
 		}
 	}
 
@@ -72,7 +82,7 @@ public class Enemy1 : MonoBehaviour {
 			nextFire = Time.time + fireRate;
 			Vector2 A = new Vector2 (transform.position.x, transform.position.y);
 
-			Collider2D[] hitPlayer = Physics2D.OverlapCircleAll (A, 0.5f);
+			Collider2D[] hitPlayer = Physics2D.OverlapCircleAll (A, 1f);
 			for (int i = 0; i < hitPlayer.Length; i++) {
 				if (hitPlayer[i].tag == "Player") {
 					hitPlayer[i].SendMessage ("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
