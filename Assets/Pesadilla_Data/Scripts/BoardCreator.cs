@@ -25,6 +25,7 @@ public class BoardCreator : MonoBehaviour
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
 	public GameObject player;								  // player game object
 	public GameObject enemy; 								 // enemy game object
+	public GameObject enemy2;
 	public GameObject exit;									// exit game object
 	public GameObject boss1;
 
@@ -43,6 +44,7 @@ public class BoardCreator : MonoBehaviour
 		//playerScript = player.GetComponent<Player> ();
 
 	}
+
 
 
     public void BoardSceneSetUp ()
@@ -205,8 +207,12 @@ public class BoardCreator : MonoBehaviour
 					ranNum = Random.Range(0,enemynumber-rng);
 					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
-						enemycount++;
+						Vector3 enemy2Pos = new Vector3 (xCoord+2, yCoord+2, 0);
+
+						enemycount+=2;
+
 						Instantiate(enemy, enemyPos, Quaternion.identity);
+						Instantiate (enemy2, enemy2Pos, Quaternion.identity);
 
 					}
 

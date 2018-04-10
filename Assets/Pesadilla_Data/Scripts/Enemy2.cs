@@ -12,7 +12,7 @@ public class Enemy2 : MonoBehaviour {
 	public float retreatDistance;
 	//Distance from player enemy will aggro
 	public float aggroDistance;
-	public int enemyHealth;
+	public int enemyHealth = 1;
 
 	private float timeBetweenShots;
 	public float startTimeBetweenShots;
@@ -27,6 +27,17 @@ public class Enemy2 : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		timeBetweenShots = startTimeBetweenShots;
 		//animator.SetTrigger ("Enemy2Left");
+	}
+
+	void TakeDamage(int damage){
+		enemyHealth -= damage;
+		CheckDead ();
+	}
+
+	void CheckDead(){
+		if (enemyHealth <= 0) {
+			Destroy (gameObject);
+		}
 	}
 	
 	// Update is called once per frame

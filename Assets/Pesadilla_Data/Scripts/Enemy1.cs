@@ -39,6 +39,7 @@ public class Enemy1 : MonoBehaviour {
 
 	void TakeDamage(int damage){
 		enemyHealth -= damage;
+		//rb2d.AddForce (transform.forward);
 		CheckDead ();
 	}
 
