@@ -54,9 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 150
   rows: 150
-  numRooms:
-    m_Min: 3
-    m_Max: 3
+  numRooms: 2
   roomWidth:
     m_Min: 20
     m_Max: 20
@@ -66,15 +64,21 @@ MonoBehaviour:
   corridorLength:
     m_Min: 10
     m_Max: 10
-  corridorWidth: 3
+  corridorWidth: 4
   floorTiles:
+  - {fileID: 1403443097907526, guid: e5962b6fde0338446bebfbd986d4dea9, type: 2}
+  - {fileID: 1244422013234244, guid: f5115dcb3e9d558489453207ce9d19ae, type: 2}
   - {fileID: 125636, guid: 74398dca0c1f64f34aab8ba7bdb6c527, type: 2}
+  - {fileID: 1525644113128354, guid: d2f62991f3553c74e92871cf5f146f5e, type: 2}
+  - {fileID: 1552015851613734, guid: 3901fd7309b3c67478c248d02729d42e, type: 2}
+  floorTile: {fileID: 0}
   outerWallTiles:
   - {fileID: 110520, guid: 7094f72151ec74f569c4e03f1ec0f8e7, type: 2}
   player: {fileID: 1733059188423992, guid: 528cc09d14981274ba9c906bd661edac, type: 2}
   enemy: {fileID: 195068, guid: ebfba08a213d34c46ba2b1947aeaea83, type: 2}
-  enemy2: {fileID: 1014588426265678, guid: 1d74eba6eaaf86f4492b8a088569d16e, type: 2}
   exit: {fileID: 1052361088316346, guid: e2ab9e75e2765914b8d3cd0ae07dca5d, type: 2}
+  boss1: {fileID: 0}
+  enemycount: 0
 --- !u!114 &114573830699028932
 MonoBehaviour:
   m_ObjectHideFlags: 1

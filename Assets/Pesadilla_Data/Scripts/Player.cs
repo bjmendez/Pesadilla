@@ -81,10 +81,14 @@ public class Player : MonoBehaviour
 	}
 
 
+	public int GetLevelCount(){
+		return levelCount;
+	}
+
 	void CheckDead(){ //Check if player is dead
 		if (health <= 0) { // if health is less than or equal to 0 than player is dead
 			animator.SetTrigger("playerDeath"); // trigger player dying animation
-
+			StartCoroutine(Example());
 		
 			health = 20;
 			SceneManager.LoadScene("GameOver");
@@ -92,7 +96,12 @@ public class Player : MonoBehaviour
 		}
 
 	}
-
+	IEnumerator Example() 
+	{
+		print(Time.time);
+		yield return new WaitForSeconds(10);
+		print(Time.time);
+	}
 
 
 	private void FixedUpdate(){
@@ -304,14 +313,17 @@ public class Player : MonoBehaviour
 
 
 				//If its the top of the tower load the youwin scene
-				if (levelCount == 4) {
+				if (levelCount == 6) {
 					levelCount = 1;
-					health = 20;
+					health =20;
 					SceneManager.LoadScene("YouWin");
 					return;
 				}
 				// you beat the boss go to next level
-                SceneManager.LoadScene("Main");
+				if(boardScript.GetEnemyCount() == 0){
+					SceneManager.LoadScene("Main");
+				}
+                
                 return;
             }
             else
@@ -320,7 +332,10 @@ public class Player : MonoBehaviour
                 DontDestroyOnLoad(GameObject.Find("PauseGUI"));
 								isBoss = true;
 				//load boss room
-                SceneManager.LoadScene("Boss");
+				if(boardScript.GetEnemyCount() == 0){
+					SceneManager.LoadScene("Boss");
+				}
+                
             }
 
 
