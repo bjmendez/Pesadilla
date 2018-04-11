@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61519312410959082}
   - component: {fileID: 114776128728104320}
   - component: {fileID: 114698495864315420}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -134,6 +134,7 @@ MonoBehaviour:
   retreatDistance: 4
   aggroDistance: 15
   enemyHealth: 1
+  gotHit: {fileID: 8300000, guid: 2197322ab1b9d4ad2802457566f98ea6, type: 3}
   startTimeBetweenShots: 3
   projectile: {fileID: 1408079008170570, guid: 69a30e8d0678c0b4aa845626cfa9c3ad, type: 2}
 --- !u!212 &212500144697580106

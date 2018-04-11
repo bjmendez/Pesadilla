@@ -14,6 +14,8 @@ public class Boss1 : MonoBehaviour {
 	private Animator animator;				// An animator for changes in the bosse's walk 
 	private float timeCountStart;
 	private float timeCountNow;
+	public AudioClip gotHit;
+
 
 	public float moveSpeed;					// Used for setting how fast the Boss walks
 	private Vector3 difference;				// Will hold a vector containing the <x, y, z> coordinates
@@ -133,7 +135,8 @@ public class Boss1 : MonoBehaviour {
 	
 	
 	}
-		
+
+
 	void OnCollisionEnter2D(Collision2D other){
 		/// <summary>
 		/// Used when two "Collider" componenets from different GameObjects collide.
@@ -143,22 +146,22 @@ public class Boss1 : MonoBehaviour {
 		/// void
 		/// </returns>
 		/// 
+		/// 
 
 
-		timeCountStart = 0.0f;
-		timeCountNow = 0.0f;
+		// Debug.Log (counting);
 
-
-		// Debug.Log ("boi");
-		if (other.gameObject.name ==  "Player_Explore(Clone)") {
+		if (other.gameObject.name ==  "Player_Explore(Clone)" ) {
 			
-			
+
 			// Calls the TakeDamage() method from the other GameObject and 
 			// passes 3 as am argument.
-			other.gameObject.SendMessage ("TakeDamage", 3);
+			other.gameObject.SendMessage ("TakeDamage", 2);
 
 		}
 	}
+		
+
 
 	void OnCollisionStay2D(Collision2D other){
 		/// <summary>
@@ -179,7 +182,7 @@ public class Boss1 : MonoBehaviour {
 
 			// Calls the TakeDamage() method from the other GameObject and 
 			// passes 3 as am argument.
-			other.gameObject.SendMessage ("TakeDamage", 3);
+			other.gameObject.SendMessage ("TakeDamage", 2);
 
 		}
 	}
@@ -204,6 +207,7 @@ public class Boss1 : MonoBehaviour {
 
 	// Used when this Boss is attacked
 	void TakeDamage(int damage){
+		SoundManager.instance.PlaySingle (gotHit);
 		BossHealth -= damage;
 		CheckDead ();
 

@@ -673,52 +673,47 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1001 &1705086966
+--- !u!1001 &1854652787
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.029436037
+      value: 262
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.0227821
+      value: 423
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4054095853485046, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+    - target: {fileID: 4608020790333728, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 58285170860015106, guid: d9ce0acd0f84a47a18357dd37c4a2e69,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d9ce0acd0f84a47a18357dd37c4a2e69, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 9d219a41130b6874ebbd750cdde46d8f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2104840792
 GameObject:

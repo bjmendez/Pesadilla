@@ -203,8 +203,11 @@ MonoBehaviour:
   speed: 10
   transform: {fileID: 4765090631302594}
   levelText: {fileID: 0}
+  isdead: 0
   healthText: {fileID: 0}
   healthBar: {fileID: 0}
+  gotHit: {fileID: 8300000, guid: 0a14b81c9eeb97d42861fbdd686e65da, type: 3}
+  attacking: {fileID: 8300000, guid: c9ccf6cbea8ec0a479e28ccb1f474e5e, type: 3}
 --- !u!124 &124654055681162174
 Behaviour:
   m_ObjectHideFlags: 1

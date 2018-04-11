@@ -36,7 +36,7 @@ public class BoardCreator : MonoBehaviour
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
 	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
     private Image UIImage;                                   //Image object displaying our controls GUI.
-	private int enemynumber = 175;
+	private int enemynumber = 225;
 	private Player playerScript;
 
 
@@ -90,6 +90,9 @@ public class BoardCreator : MonoBehaviour
 		// Create the rooms array with a random size.
 		if(numRooms != 1){
 			numRooms +=  playerScript.GetLevelCount();
+			if (numRooms > 5) {
+				numRooms = 5;
+			}
 
 		}
 
@@ -161,7 +164,7 @@ public class BoardCreator : MonoBehaviour
 			Instantiate(exit, exitPos, Quaternion.identity);
 		}
 		else{
-			Vector3 exitPos = new Vector3 (rooms[1].xPos + 12, rooms[1].yPos + 20, 0);
+			Vector3 exitPos = new Vector3 (rooms[rooms.Length-1].xPos + 12, rooms[1].yPos + 20, 0);
 			Instantiate(exit, exitPos, Quaternion.identity);
 		}
 
@@ -205,7 +208,7 @@ public class BoardCreator : MonoBehaviour
 					int rng = 25 * tempy;
 
 					ranNum = Random.Range(0,enemynumber-rng);
-					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
+					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f) && enemycount < tempy +1) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
 						Vector3 enemy2Pos = new Vector3 (xCoord, yCoord, 0);
 

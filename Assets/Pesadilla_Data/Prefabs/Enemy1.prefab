@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6195068}
   - component: {fileID: 114000344714459876}
   - component: {fileID: 11495068}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -184,6 +184,8 @@ MonoBehaviour:
   enemyDistance: 0
   aggroDistance: 15
   attackDistance: 1
-  enemyHealth: 10
+  enemyHealth: 4
   transform: {fileID: 495068}
+  gotHit: {fileID: 8300000, guid: 27292d3d3d56142d7bc31c2e8311497f, type: 3}
+  attacking: {fileID: 8300000, guid: d849118e03beaa04896b1ee7a2cd0eb1, type: 3}
   fireRate: 0.75

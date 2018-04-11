@@ -64,7 +64,7 @@ MonoBehaviour:
   corridorLength:
     m_Min: 10
     m_Max: 10
-  corridorWidth: 4
+  corridorWidth: 3
   floorTiles:
   - {fileID: 1403443097907526, guid: e5962b6fde0338446bebfbd986d4dea9, type: 2}
   - {fileID: 1244422013234244, guid: f5115dcb3e9d558489453207ce9d19ae, type: 2}

@@ -13,6 +13,7 @@ public class Enemy2 : MonoBehaviour {
 	//Distance from player enemy will aggro
 	public float aggroDistance;
 	public int enemyHealth = 1;
+	public AudioClip gotHit;
 
 	private float timeBetweenShots;
 	public float startTimeBetweenShots;
@@ -20,6 +21,16 @@ public class Enemy2 : MonoBehaviour {
 	public GameObject projectile;
 	private Transform player;
 	private Animator animator;
+	private BoardCreator boardScript;
+
+
+	void Awake (){
+
+		GameObject g = GameObject.Find ("GameManager"); // find the game manager object
+
+		boardScript = g.GetComponent<BoardCreator> (); // use to it to get a reference to the current boardcreator
+
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +41,7 @@ public class Enemy2 : MonoBehaviour {
 	}
 
 	void TakeDamage(int damage){
+		SoundManager.instance.PlaySingle (gotHit);
 		enemyHealth -= damage;
 		CheckDead ();
 	}
@@ -37,6 +49,7 @@ public class Enemy2 : MonoBehaviour {
 	void CheckDead(){
 		if (enemyHealth <= 0) {
 			Destroy (gameObject);
+			boardScript.decreaseEnemyCount ();
 		}
 	}
 	
