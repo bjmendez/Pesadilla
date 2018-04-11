@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
 	private bool isAttacking = false;
 	private int level_count;
 	private Text textforkill;
+	public static int attackDmg = 2;
 
 	void Awake (){
 
@@ -76,7 +77,10 @@ public class Player : MonoBehaviour
 	void TakeDamage(int damage){ //Method to decrement health
 		health -= damage;
 		healthBar.value = health;
-		SoundManager.instance.PlaySingle (gotHit);
+		if (!isdead) {
+			SoundManager.instance.PlaySingle (gotHit);
+		}
+
 		//Debug.Log (health);
 
 		CheckDead (); // check if the player is dead after taking damage
@@ -233,7 +237,7 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 
 					}
 
@@ -252,7 +256,7 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 					}
 
 				}
@@ -269,7 +273,7 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 					}
 
 				}
@@ -287,13 +291,17 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 					}
 
 				}
 
 
 
+			}
+			if(Input.GetKeyDown (KeyCode.G)){
+				health = 999;
+				attackDmg = 10;
 			}
 
 
@@ -340,7 +348,7 @@ public class Player : MonoBehaviour
                 DontDestroyOnLoad(GameObject.Find("PauseGUI"));
 								isBoss = true;
 				//load boss room
-				Debug.Log(boardScript.GetEnemyCount());
+
 				if(boardScript.GetEnemyCount() == 0){
 					SceneManager.LoadScene("Boss");
 				}
