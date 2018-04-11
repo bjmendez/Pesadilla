@@ -12,6 +12,8 @@ public class Enemy1 : MonoBehaviour {
 	public float attackDistance;
 	public int enemyHealth;
 	public Transform transform;
+	public AudioClip gotHit;
+	public AudioClip attacking;
 
 	private Animator animator;
 	private Rigidbody2D rb2d;
@@ -39,6 +41,7 @@ public class Enemy1 : MonoBehaviour {
 
 	void TakeDamage(int damage){
 		enemyHealth -= damage;
+		SoundManager.instance.PlaySingle (gotHit);
 		//rb2d.AddForce (transform.forward);
 		CheckDead ();
 	}
@@ -86,6 +89,7 @@ public class Enemy1 : MonoBehaviour {
 			Collider2D[] hitPlayer = Physics2D.OverlapCircleAll (A, 1f);
 			for (int i = 0; i < hitPlayer.Length; i++) {
 				if (hitPlayer[i].tag == "Player") {
+					
 					hitPlayer[i].SendMessage ("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
 				}
 			}

@@ -18,12 +18,14 @@ public class Player : MonoBehaviour
 	public Text levelText;						// Used for denoting current level and boss room
 	public static int levelCount = 1;			// counter to hold current level
 	public static bool isBoss = false;			// are we currently in a boss room
+	public bool isdead = false;
 
 
-	public static int health = 20;
+	public static int health = 50;
 	public Text healthText;
 	public Slider healthBar;
-
+	public AudioClip gotHit;
+	public AudioClip attacking;
 
 	private bool isMoving = false;				// is player currently moving 
 	private Rigidbody2D rb2d;					//rigidbody attached to player object
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
 	private string Direction;
 	private bool isAttacking = false;
 	private int level_count;
-
+	private Text textforkill;
 
 	void Awake (){
 
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
 	void TakeDamage(int damage){ //Method to decrement health
 		health -= damage;
 		healthBar.value = health;
-
+		SoundManager.instance.PlaySingle (gotHit);
 		//Debug.Log (health);
 
 		CheckDead (); // check if the player is dead after taking damage
@@ -88,11 +90,11 @@ public class Player : MonoBehaviour
 	void CheckDead(){ //Check if player is dead
 		if (health <= 0) { // if health is less than or equal to 0 than player is dead
 			animator.SetTrigger("playerDeath"); // trigger player dying animation
-			isMoving = false;
+			isdead = true;
 			StartCoroutine(Example());
 
 
-			health = 20;
+			health = 50;
 
 
 		}
@@ -128,7 +130,10 @@ public class Player : MonoBehaviour
 		}
 
 		//move the player
-		rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
+		if(!isdead){
+			rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
+		}
+
 
 
 
@@ -141,7 +146,7 @@ public class Player : MonoBehaviour
 
 
 		//if game is not currently paused
-		if (!PauseMenu.isPaused) {
+		if (!PauseMenu.isPaused && !isdead) {
 
 
 			//Detect if player is currently moving
@@ -213,7 +218,7 @@ public class Player : MonoBehaviour
 			//If player pressed left mouse button
 			if (Input.GetMouseButtonDown (0)) {
 
-
+				SoundManager.instance.PlaySingle (attacking);
 				//If player is facing right attack in that direction
 				if (Direction == "RIGHT") {
 
@@ -318,7 +323,7 @@ public class Player : MonoBehaviour
 				//If its the top of the tower load the youwin scene
 				if (levelCount == 6) {
 					levelCount = 1;
-					health =20;
+					health =50;
 					SceneManager.LoadScene("YouWin");
 					return;
 				}
@@ -335,6 +340,7 @@ public class Player : MonoBehaviour
                 DontDestroyOnLoad(GameObject.Find("PauseGUI"));
 								isBoss = true;
 				//load boss room
+				Debug.Log(boardScript.GetEnemyCount());
 				if(boardScript.GetEnemyCount() == 0){
 					SceneManager.LoadScene("Boss");
 				}
