@@ -18,7 +18,7 @@
 * Levels can be generated procedurally.  Will be generated as a series of rooms connected by corridors.
 * Each level is a tower consisting of a series of floors.
 * Player reaches the end of a floor of a tower, defeats a boss-type enemy, and moves on to the next level.
-* Sound effects for player attacks, enemy attacks, player being hit, enemy being hit, and background music. 
+* Sound effects for player attacks, player being hit, enemy being hit, and background music. 
 
 # Add-ons
 * Additional towers/levels.
