@@ -97,8 +97,8 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
+  orthographic size: 8
+  m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -202,6 +202,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   transform: {fileID: 4765090631302594}
+  levelText: {fileID: 0}
+  isdead: 0
+  healthText: {fileID: 0}
+  healthBar: {fileID: 0}
+  gotHit: {fileID: 8300000, guid: 0a14b81c9eeb97d42861fbdd686e65da, type: 3}
+  attacking: {fileID: 8300000, guid: c9ccf6cbea8ec0a479e28ccb1f474e5e, type: 3}
 --- !u!124 &124654055681162174
 Behaviour:
   m_ObjectHideFlags: 1
@@ -242,7 +248,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -900995045
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300296, guid: 841181c1771fb604fa318ec60f76d623, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

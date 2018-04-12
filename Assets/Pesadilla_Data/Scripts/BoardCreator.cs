@@ -15,27 +15,46 @@ public class BoardCreator : MonoBehaviour
 
 	public int columns = 100;                                 // The number of columns on the board (how wide it will be).
 	public int rows = 100;                                    // The number of rows on the board (how tall it will be).
-	public IntRange numRooms = new IntRange (15, 20);         // The range of the number of rooms there can be.
+	public int numRooms;        // The range of the number of rooms there can be.
 	public IntRange roomWidth = new IntRange (3, 10);         // The range of widths rooms can have.
 	public IntRange roomHeight = new IntRange (3, 10);        // The range of heights rooms can have.
 	public IntRange corridorLength = new IntRange (6, 10);    // The range of lengths corridors between rooms can have.
 	public int corridorWidth;
 	public GameObject[] floorTiles;                           // An array of floor tile prefabs.
+	public GameObject floorTile;
 	public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
 	public GameObject player;								  // player game object
 	public GameObject enemy; 								 // enemy game object
+	public GameObject enemy2;
 	public GameObject exit;									// exit game object
+	public GameObject boss1;
 
 	private int ranNum; 									// random number
+	public int enemycount =0;
 	private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
 	public Room[] rooms;                                     // All the rooms that are created for this board.
 	private Corridor[] corridors;                             // All the corridors that connect the rooms.
 	private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
     private Image UIImage;                                   //Image object displaying our controls GUI.
+	private int enemynumber = 225;
+	private Player playerScript;
+
+
+	void Awake(){
+		//playerScript = player.GetComponent<Player> ();
+
+	}
+
+
 
     public void BoardSceneSetUp ()
 	{
 		// Create the board holder.
+
+
+
+		playerScript = player.GetComponent<Player> ();
+
 		boardHolder = new GameObject("BoardHolder");
 
 		SetupTilesArray ();
@@ -47,6 +66,7 @@ public class BoardCreator : MonoBehaviour
 		SetTilesValuesForCorridors ();
 
 		InstantiateTiles ();
+
 
 		//InstantiateOuterWalls ();
 	}
@@ -68,8 +88,13 @@ public class BoardCreator : MonoBehaviour
 	void CreateRoomsAndCorridors ()
 	{
 		// Create the rooms array with a random size.
-		rooms = new Room[numRooms.Random];
+		if(numRooms != 1){
+			numRooms +=  playerScript.GetLevelCount();
 
+
+		}
+
+		rooms = new Room[numRooms];
 		// There should be one less corridor than there is rooms.
 
 
@@ -84,10 +109,10 @@ public class BoardCreator : MonoBehaviour
 			//spawn player in front of room
 			Vector3 playerPos = new Vector3 (rooms[0].xPos+5, rooms[0].yPos + 3, 0);
 			Instantiate(player, playerPos, Quaternion.identity);
-			Vector3 enemyPos = new Vector3  (rooms[0].xPos+5, rooms[0].yPos + 7, 0);
-
+			Vector3 BossPos = new Vector3  (rooms[0].xPos+5, rooms[0].yPos + 7, 0);
+			enemycount++;
 			//spawn boss
-			Instantiate(enemy, enemyPos, Quaternion.identity);
+			Instantiate(boss1, BossPos, Quaternion.identity);
 
 			//put exit door behind boss
 			Vector3 exitPos = new Vector3 (rooms[0].xPos + 7, rooms[0].yPos + 15, 0);
@@ -137,7 +162,7 @@ public class BoardCreator : MonoBehaviour
 			Instantiate(exit, exitPos, Quaternion.identity);
 		}
 		else{
-			Vector3 exitPos = new Vector3 (rooms[1].xPos + 12, rooms[1].yPos + 20, 0);
+			Vector3 exitPos = new Vector3 (rooms[rooms.Length-1].xPos + 12, rooms[1].yPos + 20, 0);
 			Instantiate(exit, exitPos, Quaternion.identity);
 		}
 
@@ -146,6 +171,14 @@ public class BoardCreator : MonoBehaviour
 	//get the number of rooms
 	public int GetRoomLength(){
 		return rooms.Length;
+	}
+
+	public void decreaseEnemyCount(){
+		enemycount--;
+	}
+
+	public int GetEnemyCount(){
+		return enemycount;
 	}
 
 	void SetTilesValuesForRooms ()
@@ -167,11 +200,20 @@ public class BoardCreator : MonoBehaviour
 
 					// The coordinates in the jagged array are based on the room's position and it's width and height.
 					//give every tile a 1 in X chance of spawning an enemy on top of it
-					ranNum = Random.Range(0,200);
-					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f)) {
+
+					int tempy = 0;
+					tempy = playerScript.GetLevelCount();
+					int rng = 25 * tempy;
+
+					ranNum = Random.Range(0,enemynumber-rng);
+					if (ranNum == 5 && i != Mathf.Floor(rooms.Length * .5f) && enemycount < tempy +1) {
 						Vector3 enemyPos = new Vector3 (xCoord, yCoord, 0);
+						Vector3 enemy2Pos = new Vector3 (xCoord, yCoord, 0);
+
+						enemycount+=2;
 
 						Instantiate(enemy, enemyPos, Quaternion.identity);
+						Instantiate (enemy2, enemy2Pos, Quaternion.identity);
 
 					}
 
@@ -256,6 +298,19 @@ public class BoardCreator : MonoBehaviour
 
 	void InstantiateTiles ()
 	{
+		int temp = 0;
+		temp = Random.Range (0, 4);
+		if (temp == 0) {
+			floorTile = floorTiles [0];
+		} else if (temp == 1) {
+			floorTile = floorTiles [1];
+		} else if (temp == 2) {
+			floorTile = floorTiles [2];
+		} else if (temp == 3) {
+			floorTile = floorTiles [3];
+		} else {
+			floorTile = floorTiles [4];
+		}
 		// Go through all the tiles in the jagged array...
 		for (int i = 0; i < tiles.Length; i++)
 		{
@@ -264,14 +319,15 @@ public class BoardCreator : MonoBehaviour
 
 				if (tiles [i] [j] == TileType.Floor) {
 					// ... and instantiate a floor tile for it.
-
-					InstantiateFromArray (floorTiles, i, j);
+					Vector3 tilePos = new Vector3(i,j,0);
+					Instantiate (floorTile, tilePos, Quaternion.identity);
 				}
 
 				// If the tile type is Wall...
 				else if (tiles[i][j] == TileType.Wall)
 				{
 					// ... instantiate a wall over the top.
+
 					InstantiateFromArray (outerWallTiles, i, j);
 				}
 			}

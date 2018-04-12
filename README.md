@@ -7,7 +7,7 @@
 
 # MVP
 * User loads into a Start menu, pushes a "start button" and is loaded into the game.
-* Controls are briefly explained to the user.
+* Controls are briefly explained to the user if the user presses the "Controls" button at the start menu.
 * User is able to control character using directional keyboard controls.
 * User can control on screen character and move on screen with sprite animations.
 * Floors contain enemy AI characters that attack the player.
@@ -18,7 +18,8 @@
 * Levels can be generated procedurally.  Will be generated as a series of rooms connected by corridors.
 * Each level is a tower consisting of a series of floors.
 * Player reaches the end of a floor of a tower, defeats a boss-type enemy, and moves on to the next level.
-* Sound effects for player attacks, enemy attacks, player being hit, enemy being hit, and background music. 
+* Sound effects for player attacks, player being hit, enemy being hit, and background music. 
+(For grading purposes you can press 'G' to enable god mode)
 
 # Add-ons
 * Additional towers/levels.
@@ -47,3 +48,6 @@ Go to the release and download the the zip. Once you have downloaded the zip jus
 
 # Prototype youtube link
 https://www.youtube.com/watch?v=AgaNH6g_O3I
+
+# Alpha Release youtube link
+https://www.youtube.com/watch?v=6Ca65GpsrX8

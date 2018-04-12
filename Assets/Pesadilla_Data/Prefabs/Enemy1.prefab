@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6195068}
   - component: {fileID: 114000344714459876}
   - component: {fileID: 11495068}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 3.3065445, y: 0.8046303, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,14 +45,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.05
-  m_AngularDrag: 0.05
+  m_Mass: 250
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &6195068
 BoxCollider2D:
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: -0.05, y: -0.18}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,6 +184,8 @@ MonoBehaviour:
   enemyDistance: 0
   aggroDistance: 15
   attackDistance: 1
-  enemyHealth: 10
+  enemyHealth: 4
   transform: {fileID: 495068}
+  gotHit: {fileID: 8300000, guid: 27292d3d3d56142d7bc31c2e8311497f, type: 3}
+  attacking: {fileID: 8300000, guid: d849118e03beaa04896b1ee7a2cd0eb1, type: 3}
   fireRate: 0.75

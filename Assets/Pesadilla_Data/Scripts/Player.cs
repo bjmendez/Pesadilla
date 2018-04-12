@@ -18,12 +18,14 @@ public class Player : MonoBehaviour
 	public Text levelText;						// Used for denoting current level and boss room
 	public static int levelCount = 1;			// counter to hold current level
 	public static bool isBoss = false;			// are we currently in a boss room
+	public bool isdead = false;
 
 
-	public static int health = 20;
+	public static int health = 50;
 	public Text healthText;
 	public Slider healthBar;
-
+	public AudioClip gotHit;
+	public AudioClip attacking;
 
 	private bool isMoving = false;				// is player currently moving 
 	private Rigidbody2D rb2d;					//rigidbody attached to player object
@@ -33,7 +35,9 @@ public class Player : MonoBehaviour
 	private string Direction;
 	private bool isAttacking = false;
 	private int level_count;
-
+	private Text textforkill;
+	public static int attackDmg = 2;
+	public Text txt;
 
 	void Awake (){
 
@@ -56,8 +60,9 @@ public class Player : MonoBehaviour
 		levelText = GameObject.Find("LevelText").GetComponent<Text>();
 		healthText = GameObject.Find("HealthText").GetComponent<Text>();
 		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
+		txt = healthText = GameObject.Find("kill kill kill").GetComponent<Text>();
 		healthBar.value = health;
-
+		StartCoroutine (delayMessage());
 
 		levelText = GameObject.Find("LevelText").GetComponent<Text>(); // Get the current text that is on the screen
 
@@ -74,23 +79,48 @@ public class Player : MonoBehaviour
 	void TakeDamage(int damage){ //Method to decrement health
 		health -= damage;
 		healthBar.value = health;
+		if (!isdead) {
+			SoundManager.instance.PlaySingle (gotHit);
+		}
+
+		//Debug.Log (health);
 
 		CheckDead (); // check if the player is dead after taking damage
 	}
 
 
+	public int GetLevelCount(){
+		return levelCount;
+	}
+
 	void CheckDead(){ //Check if player is dead
 		if (health <= 0) { // if health is less than or equal to 0 than player is dead
 			animator.SetTrigger("playerDeath"); // trigger player dying animation
+			isdead = true;
+			StartCoroutine(Example());
 
-		
-			health = 20;
-			SceneManager.LoadScene("GameOver");
+			isBoss = false;
+			levelCount = 0;
+			health = 50;
+
 
 		}
 
 	}
+	IEnumerator Example() 
+	{
+		
+		yield return new WaitForSeconds(3);
+		SceneManager.LoadScene("GameOver");
 
+	}
+	IEnumerator delayMessage() 
+	{
+
+		yield return new WaitForSeconds(5);
+		txt.enabled = false;
+
+	}
 
 
 	private void FixedUpdate(){
@@ -114,7 +144,10 @@ public class Player : MonoBehaviour
 		}
 
 		//move the player
-		rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
+		if(!isdead){
+			rb2d.MovePosition (rb2d.position + movement * speed * Time.deltaTime);
+		}
+
 
 
 
@@ -127,7 +160,7 @@ public class Player : MonoBehaviour
 
 
 		//if game is not currently paused
-		if (!PauseMenu.isPaused) {
+		if (!PauseMenu.isPaused && !isdead) {
 
 
 			//Detect if player is currently moving
@@ -199,7 +232,7 @@ public class Player : MonoBehaviour
 			//If player pressed left mouse button
 			if (Input.GetMouseButtonDown (0)) {
 
-
+				SoundManager.instance.PlaySingle (attacking);
 				//If player is facing right attack in that direction
 				if (Direction == "RIGHT") {
 
@@ -214,7 +247,7 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 
 					}
 
@@ -233,7 +266,7 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 					}
 
 				}
@@ -250,7 +283,7 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 					}
 
 				}
@@ -268,13 +301,17 @@ public class Player : MonoBehaviour
 					Collider2D[] hitObjects = Physics2D.OverlapAreaAll (A, B);
 					for (int i = 0; i < hitObjects.Length; i++) {
 						//tell enemy thats hit to take 2 damage
-						hitObjects [i].SendMessage ("TakeDamage", 2, SendMessageOptions.DontRequireReceiver);
+						hitObjects [i].SendMessage ("TakeDamage", attackDmg, SendMessageOptions.DontRequireReceiver);
 					}
 
 				}
 
 
 
+			}
+			if(Input.GetKeyDown (KeyCode.G)){
+				health = 999;
+				attackDmg = 10;
 			}
 
 
@@ -302,14 +339,17 @@ public class Player : MonoBehaviour
 
 
 				//If its the top of the tower load the youwin scene
-				if (levelCount == 4) {
+				if (levelCount == 6) {
 					levelCount = 1;
-					health = 20;
+					health =50;
 					SceneManager.LoadScene("YouWin");
 					return;
 				}
 				// you beat the boss go to next level
-                SceneManager.LoadScene("Main");
+				if(boardScript.GetEnemyCount() == 0){
+					SceneManager.LoadScene("Main");
+				}
+                
                 return;
             }
             else
@@ -318,7 +358,11 @@ public class Player : MonoBehaviour
                 DontDestroyOnLoad(GameObject.Find("PauseGUI"));
 								isBoss = true;
 				//load boss room
-                SceneManager.LoadScene("Boss");
+
+				if(boardScript.GetEnemyCount() == 0){
+					SceneManager.LoadScene("Boss");
+				}
+                
             }
 
 

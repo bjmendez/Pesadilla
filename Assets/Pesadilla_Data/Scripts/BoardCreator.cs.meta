@@ -1,11 +1,16 @@
 fileFormatVersion: 2
 guid: 671b05d2d89d2344daab31dc6bbb2db4
-timeCreated: 1516661860
+timeCreated: 1523389913
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - enemy: {instanceID: 0}
+  - enemy2: {instanceID: 0}
+  - exit: {instanceID: 0}
+  - boss1: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
 	public float speed;
+	public int projectileDamage;
 
 	private Transform player;
 	private Vector2 target;
@@ -27,6 +28,7 @@ public class Projectile : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Player")) {
+			other.gameObject.SendMessage ("TakeDamage", projectileDamage);
 			DestroyProjectile ();
 		}
 	}
