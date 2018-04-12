@@ -99,7 +99,8 @@ public class Player : MonoBehaviour
 			isdead = true;
 			StartCoroutine(Example());
 
-
+			isBoss = false;
+			levelCount = 0;
 			health = 50;
 
 
