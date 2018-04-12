@@ -90,9 +90,7 @@ public class BoardCreator : MonoBehaviour
 		// Create the rooms array with a random size.
 		if(numRooms != 1){
 			numRooms +=  playerScript.GetLevelCount();
-			if (numRooms > 5) {
-				numRooms = 5;
-			}
+
 
 		}
 
@@ -329,6 +327,7 @@ public class BoardCreator : MonoBehaviour
 				else if (tiles[i][j] == TileType.Wall)
 				{
 					// ... instantiate a wall over the top.
+
 					InstantiateFromArray (outerWallTiles, i, j);
 				}
 			}

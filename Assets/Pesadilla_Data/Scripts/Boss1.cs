@@ -91,7 +91,7 @@ public class Boss1 : MonoBehaviour {
 
 		if (isBossDead) {
 
-			animator.SetTrigger ("BossDead");
+			//animator.SetTrigger ("BossDead");
 
 		} else {
 			
