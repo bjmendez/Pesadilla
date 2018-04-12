@@ -17,7 +17,7 @@ public class YouWin : MonoBehaviour {
 	IEnumerator ToStartMenu()
 	{
 		yield return new  WaitForSeconds(transitionTime);
-
+		Destroy(GameObject.Find("SoundManager"));
 		SceneManager.LoadScene("StartMenu");
 
 	}
