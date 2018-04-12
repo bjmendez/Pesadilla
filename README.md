@@ -19,6 +19,7 @@
 * Each level is a tower consisting of a series of floors.
 * Player reaches the end of a floor of a tower, defeats a boss-type enemy, and moves on to the next level.
 * Sound effects for player attacks, player being hit, enemy being hit, and background music. 
+(For grading purposes you can press 'G' to enable god mode)
 
 # Add-ons
 * Additional towers/levels.
