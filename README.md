@@ -7,7 +7,7 @@
 
 # MVP
 * User loads into a Start menu, pushes a "start button" and is loaded into the game.
-* Controls are briefly explained to the user.
+* Controls are briefly explained to the user if the user presses the "Controls" button at the start menu.
 * User is able to control character using directional keyboard controls.
 * User can control on screen character and move on screen with sprite animations.
 * Floors contain enemy AI characters that attack the player.
