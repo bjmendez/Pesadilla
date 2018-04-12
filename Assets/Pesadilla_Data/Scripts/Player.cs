@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 	private int level_count;
 	private Text textforkill;
 	public static int attackDmg = 2;
+	public Text txt;
 
 	void Awake (){
 
@@ -59,8 +60,9 @@ public class Player : MonoBehaviour
 		levelText = GameObject.Find("LevelText").GetComponent<Text>();
 		healthText = GameObject.Find("HealthText").GetComponent<Text>();
 		healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
+		txt = healthText = GameObject.Find("kill kill kill").GetComponent<Text>();
 		healthBar.value = health;
-
+		StartCoroutine (delayMessage());
 
 		levelText = GameObject.Find("LevelText").GetComponent<Text>(); // Get the current text that is on the screen
 
@@ -109,6 +111,13 @@ public class Player : MonoBehaviour
 		
 		yield return new WaitForSeconds(3);
 		SceneManager.LoadScene("GameOver");
+
+	}
+	IEnumerator delayMessage() 
+	{
+
+		yield return new WaitForSeconds(5);
+		txt.enabled = false;
 
 	}
 
