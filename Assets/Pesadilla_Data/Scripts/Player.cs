@@ -38,8 +38,11 @@ public class Player : MonoBehaviour
 	private Text textforkill;
 	public static int attackDmg = 2;
 	public Text txt;
+    private Transform player;
+    private Vector2 target;
 
-	void Awake (){
+
+    void Awake (){
 
 		GameObject g = GameObject.Find ("GameManager"); // find the game manager object
 
@@ -137,7 +140,8 @@ public class Player : MonoBehaviour
 		// If the player is in the middle of attacking then don't allow movement
 		m_CurrentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
 		m_ClipName = m_CurrentClipInfo[0].clip.name;
-		if(m_ClipName == "rightAttack" || m_ClipName == "leftAttack" || m_ClipName == "backAttack" || m_ClipName == "frontAttack"){
+		if(m_ClipName == "rightAttack" || m_ClipName == "leftAttack" || m_ClipName == "backAttack" || m_ClipName == "frontAttack" || m_ClipName == "rangeAttackUP" || m_ClipName == "rangeAttackLEFT" || m_ClipName == "rangeAttackRIGHT" || m_ClipName == "rangeAttackDOWN")
+        {
 			//rb2d.MovePosition (rb2d.position  + Vector2.zero * 0 * Time.deltaTime);
 			//Input.ResetInputAxes ();
 			return;
@@ -309,10 +313,39 @@ public class Player : MonoBehaviour
 
 
 			}
-			if(Input.GetKeyDown (KeyCode.G)){
+            //If player pressed right mouse button
+            if (Input.GetMouseButtonDown(1)) {
+                // if player is facing back attack in that direction
+                if (Direction == "BACK"){
+                    //play back range attacking animation
+                    animator.SetTrigger("rangeAttackUP");
+
+                }
+                if (Direction == "FRONT")
+                {
+                    //play front range attacking animation
+                    animator.SetTrigger("rangeAttackDOWN");
+
+                }
+                if (Direction == "LEFT")
+                {
+                    //play left range attacking animation
+                    animator.SetTrigger("rangeAttackLEFT");
+
+                }
+                if (Direction == "RIGHT")
+                {
+                    //play right range attacking animation
+                    animator.SetTrigger("rangeAttackRIGHT");
+
+                }
+            }
+                if (Input.GetKeyDown (KeyCode.G)){
 				health = 999;
 				attackDmg = 10;
 			}
+
+
 
 
 		}
