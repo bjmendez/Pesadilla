@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
 
 
 			//If player pressed left mouse button
-			if (Input.GetMouseButtonDown (0)) {
+			if (Input.GetMouseButtonDown (0) || Input.GetKeyDown(KeyCode.Space)) {
 
 				SoundManager.instance.PlaySingle (attacking);
 				//If player is facing right attack in that direction
