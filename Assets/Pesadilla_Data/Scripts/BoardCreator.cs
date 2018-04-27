@@ -299,7 +299,8 @@ public class BoardCreator : MonoBehaviour
 	void InstantiateTiles ()
 	{
 		int temp = 0;
-		temp = Random.Range (0, 4);
+		temp = Random.Range (0, 5);
+		Debug.Log (temp);
 		if (temp == 0) {
 			floorTile = floorTiles [0];
 		} else if (temp == 1) {
@@ -311,6 +312,7 @@ public class BoardCreator : MonoBehaviour
 		} else {
 			floorTile = floorTiles [4];
 		}
+
 		// Go through all the tiles in the jagged array...
 		for (int i = 0; i < tiles.Length; i++)
 		{
