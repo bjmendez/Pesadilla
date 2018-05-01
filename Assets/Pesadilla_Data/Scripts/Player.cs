@@ -173,34 +173,34 @@ public class Player : MonoBehaviour
 
 
 			//If player is moving and 'A' is pressed trigger left walking animation and set direction to left
-			if (Input.GetKeyDown (KeyCode.A) && isMoving) {
+			if ((Input.GetKeyDown (KeyCode.A) ||Input.GetKeyDown (KeyCode.LeftArrow)  ) && isMoving) {
 				animator.SetTrigger ("playerLeft");
 				Direction = "LEFT";
 
 
 			} 
 			//If player is moving and 'D' is pressed trigger right walking animation and set direction to right
-			else if (Input.GetKeyDown (KeyCode.D) && isMoving) {
+			else if ((Input.GetKeyDown (KeyCode.D) ||Input.GetKeyDown (KeyCode.RightArrow)  ) && isMoving) {
 				animator.SetTrigger ("playerRight");
 				Direction = "RIGHT";
 
 
 			} 
 			//If player is moving and 'W' is pressed trigger back walking animation and set direction to back
-			else if (Input.GetKeyDown (KeyCode.W) && isMoving) {
+			else if ((Input.GetKeyDown (KeyCode.W) ||Input.GetKeyDown (KeyCode.UpArrow)  ) && isMoving) {
 				animator.SetTrigger ("playerBack");
 				Direction = "BACK";
 
 			} 
 			//If player is movign and 'S' is pressed trigger front walking animation and set direction to front
-			else if (Input.GetKeyDown (KeyCode.S) && isMoving) {
+			else if ((Input.GetKeyDown (KeyCode.S) ||Input.GetKeyDown (KeyCode.DownArrow)  )&& isMoving) {
 				animator.SetTrigger ("playerFoward");
 				Direction = "FRONT";
 
 			}
 
 			//If player lets go of 'A' and isn't moving play left idle animation and set direction to left
-			if (Input.GetKeyUp (KeyCode.A) && !isMoving) {
+			if ((Input.GetKeyUp (KeyCode.A) ||Input.GetKeyUp (KeyCode.LeftArrow)) && !isMoving) {
 
 				animator.SetTrigger ("playerLIdle");
 				Direction = "LEFT";
@@ -208,20 +208,20 @@ public class Player : MonoBehaviour
 
 			} 
 			//If player lets go of 'D' and isn't moving play right idle animation and set direction to right
-			else if (Input.GetKeyUp (KeyCode.D) && !isMoving) {
+			else if ((Input.GetKeyUp (KeyCode.D) ||Input.GetKeyUp (KeyCode.RightArrow)) && !isMoving) {
 				animator.SetTrigger ("playerRIdle");
 				Direction = "RIGHT";
 
 			} 
 			//If player lets go of 'W' and isn't moving play back idle animation and set direction to back
-			else if (Input.GetKeyUp (KeyCode.W) && !isMoving) {
+			else if ((Input.GetKeyUp (KeyCode.W) ||Input.GetKeyUp (KeyCode.UpArrow)  )&& !isMoving) {
 				animator.SetTrigger ("playerBIdle");
 				Direction = "BACK";
 
 
 			} 
 			//If player lets go of 'S' and isn't moving player front idle animation and set direction to front
-			else if (Input.GetKeyUp (KeyCode.S) && !isMoving) {
+			else if ((Input.GetKeyUp (KeyCode.S) ||Input.GetKeyUp (KeyCode.DownArrow)  )&& !isMoving) {
 				animator.SetTrigger ("playerFIdle");
 				Direction = "FRONT";
 
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
 
 
 			//If player pressed left mouse button
-			if (Input.GetMouseButtonDown (0)) {
+			if (Input.GetMouseButtonDown (0) || Input.GetKeyDown(KeyCode.Space)) {
 
 				SoundManager.instance.PlaySingle (attacking);
 				//If player is facing right attack in that direction

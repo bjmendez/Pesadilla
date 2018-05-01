@@ -2,6 +2,10 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/PesadillaGame/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+# Website/ Landing Page
+
+https://brandonjosemendez9.wixsite.com/pesadilla
+
 
 # Project Description
 
@@ -46,8 +50,7 @@ As a player playing Pesadilla I want a 2D Action type RPG similar to Legend of Z
 # How to run the game 
 Go to the release and download the the zip. Once you have downloaded the zip just extract all the files from the zip into a folder. To start the game just run the PesadilaSingleFileExe.exe. Only been tested for windows. 
 
-# Prototype youtube link
-https://www.youtube.com/watch?v=AgaNH6g_O3I
+# Beta Release youtube link
+https://youtu.be/kb9fHxZg2No
 
-# Alpha Release youtube link
-https://www.youtube.com/watch?v=6Ca65GpsrX8
+
