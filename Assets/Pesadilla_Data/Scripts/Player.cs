@@ -36,13 +36,15 @@ public class Player : MonoBehaviour
 	private bool isAttacking = false;
 	private int level_count;
 	private Text textforkill;
+    private GameObject panel;
 	public static int attackDmg = 2;
 	public Text txt;
 
 	void Awake (){
 
 		GameObject g = GameObject.Find ("GameManager"); // find the game manager object
-
+        panel = GameObject.Find("Panel");
+        panel.SetActive(false);
 		boardScript = g.GetComponent<BoardCreator> (); // use to it to get a reference to the current boardcreator
 
 	}
@@ -121,9 +123,16 @@ public class Player : MonoBehaviour
 		txt.enabled = false;
 
 	}
+    IEnumerator delayMessage(GameObject obj)
+    {
+
+        yield return new WaitForSeconds(2);
+        obj.SetActive(false);
+
+    }
 
 
-	private void FixedUpdate(){
+    private void FixedUpdate(){
 
 		float moveHorizontal = Input.GetAxisRaw ("Horizontal"); //Get horizontal input
 
@@ -348,8 +357,14 @@ public class Player : MonoBehaviour
 				// you beat the boss go to next level
 				if(boardScript.GetEnemyCount() == 0){
 					SceneManager.LoadScene("Main");
-				}
-                
+
+                }
+                else
+                {
+                    panel.SetActive(true);
+                    StartCoroutine(delayMessage(panel));
+                }
+
                 return;
             }
             else
@@ -362,7 +377,13 @@ public class Player : MonoBehaviour
 				if(boardScript.GetEnemyCount() == 0){
 					SceneManager.LoadScene("Boss");
 				}
-                
+                else
+                {
+                    panel.SetActive(true);
+                    StartCoroutine(delayMessage(panel));
+                }
+
+
             }
 
 
