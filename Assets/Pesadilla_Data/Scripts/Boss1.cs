@@ -10,26 +10,30 @@ public class Boss1 : MonoBehaviour {
 	public int BossAttack = 5;				// The attack this boss can infict on the player
 	private bool isBossDead;
 
-	private Transform playerToKillPos;		// The position of the player
-	private Animator animator;				// An animator for changes in the bosse's walk 
+	private Transform playerToKillPos;      // The position of the player
+
+    private Animator animator;				// An animator for changes in the bosse's walk 
 	private float timeCountStart;
 	private float timeCountNow;
 	public AudioClip gotHit;
 
 
 	public float moveSpeed;					// Used for setting how fast the Boss walks
-	private Vector3 difference;				// Will hold a vector containing the <x, y, z> coordinates
-											// of the boss and the player.
-	private Vector3 playerPosition;			// Will hold the player's current position in vector format.
+	private Vector3 difference;             // Will hold a vector containing the <x, y, z> coordinates
+                                            // of the boss and the player.
 
+    private Vector3 playerPosition;         // Will hold the player's current position in vector format.
+    private Vector2 playerPositionV2;         // Will hold the player's current position in vector2 format.
 
-	private BoardCreator boardScript;
+   
+    private BoardCreator boardScript;
 
 
 	void Awake(){
 		GameObject g = GameObject.Find ("GameManager"); // find the game manager object
 
 		boardScript = g.GetComponent<BoardCreator> (); // use to it to get a reference to the current boardcreator
+
 	}
 
 	// This method will always run first.
@@ -38,8 +42,8 @@ public class Boss1 : MonoBehaviour {
 		// Returns the position of the Player
 		playerToKillPos = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
 
-		// Sets the animator to use this GameObject's Animator.
-		animator = GetComponent<Animator> ();
+        // Sets the animator to use this GameObject's Animator.
+        animator = GetComponent<Animator> ();
 		animator.SetTrigger ("BossBlendTree");
 
 		isBossDead = false;
@@ -74,22 +78,23 @@ public class Boss1 : MonoBehaviour {
 		
 		// Will pudate the position of the player once per frame.
 		playerToKillPos = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
-
-		// Uses the axes from the playerToKillPos Transform variable.
-		playerPosition = new Vector3 (playerToKillPos.position.x, playerToKillPos.position.y, 0.0f);
+        // Uses the axes from the playerToKillPos Transform variable.
+        playerPosition = new Vector3 (playerToKillPos.position.x, playerToKillPos.position.y, 0.0f);
 
 		// Caluculates and converts the difference to a unit vector. 
 		difference = transform.position - playerPosition;
 
 
 
+     
+        timeCountNow += Time.deltaTime;
+        
+        Vector3 vectorToTarget = playerToKillPos.position - transform.position;
 
-
-
-		timeCountNow += Time.deltaTime;
-
-
-		if (isBossDead) {
+        vectorToTarget.Normalize();
+        
+        LookAt2D(transform, vectorToTarget);
+        if (isBossDead) {
 
 			//animator.SetTrigger ("BossDead");
 
@@ -100,20 +105,20 @@ public class Boss1 : MonoBehaviour {
 			
 				difference = normalizeVect (difference);
 
-				// Updates the Bosses potiotion.
+                // Updates the Bosses potiotion.
+                
+                transform.position -= difference * moveSpeed * Time.deltaTime;
+                
+                // The SetFloat Method from the animator object dictates what movement the 
+                // Boss demonstrates. 
 
-				transform.position -= difference * moveSpeed * Time.deltaTime;
 
-				// The SetFloat Method from the animator object dictates what movement the 
-				// Boss demonstrates. 
-
-				/*
-				animator.SetFloat ("Horizontal", -difference.x);
+                animator.SetFloat ("Horizontal", -difference.x);
 				animator.SetFloat ("Vertical", -difference.y);
-				*/
+				
 
 
-				if ((timeCountNow - timeCountStart) > 2) {
+                if ((timeCountNow - timeCountStart) > 2) {
 					
 					animator.SetFloat ("Horizontal", -difference.x);
 					animator.SetFloat ("Vertical", -difference.y);
@@ -128,7 +133,23 @@ public class Boss1 : MonoBehaviour {
 
 
 	}
-	float magnitude (Vector3 inputVector){
+
+
+
+    void LookAt2D(Transform transform, Vector2 target)
+    {
+        Vector2 current = transform.position;
+        var direction = target - current;
+    
+        var angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) + 90;
+        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+
+       
+
+        transform.rotation = q;
+    }
+
+    float magnitude (Vector3 inputVector){
 
 		return (inputVector.x * inputVector.x) + (inputVector.y * inputVector.y) + (inputVector.z * inputVector.z);
 	
